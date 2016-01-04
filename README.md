@@ -1,0 +1,5 @@
+# Notes
+
+notepad.strangefoxes.ru
+
+---

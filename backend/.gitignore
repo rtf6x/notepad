@@ -1,0 +1,6 @@
+.svn/
+.idea/
+/config.js
+node_modules/
+mailTemplate.js
+mailTemplate.html

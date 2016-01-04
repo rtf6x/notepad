@@ -1,0 +1,7 @@
+Options +FollowSymLinks +ExecCGI
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_URI} !(\.png|\.jpg|\.css|\.js|\.eot|\.svg|\.ttf|\.woff|\.php|\.html)$
+  RewriteRule (.*)  index.html [QSA]
+</IfModule>

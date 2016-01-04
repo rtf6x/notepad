@@ -1,0 +1,35 @@
+<div data-ng-init="init()">
+    <div class="login-bg"></div>
+    <div class="login-wrapper">
+        <div class="login-header">
+            <p>Please enter inputs below to get in</p>
+        </div>
+
+        <div class="login-form vh-center">
+            <div class="form-group">
+                <input autocomplete="off" name="login" type="text" ng-keypress="inputKeydown($event)" id="login"
+                       ng-model="credentials.login" placeholder="username">
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" name="email" type="text" ng-keypress="inputKeydown($event)" id="email"
+                       ng-model="credentials.email" placeholder="email">
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" name="password" type="password" ng-keypress="inputKeydown($event)"
+                       id="password" ng-model="credentials.password" placeholder="password">
+            </div>
+            <button class="submitButton" ng-click="register()"><i class="icon icon-arrow-right"></i></button>
+        </div>
+
+        <div class="login-bottom_buttons">
+            <a class="registerButton" href="#/login">
+                <i class="icon icon-head"></i>
+                Back to login
+            </a>
+            <a class="forgotButton" href="#/forgot_password">
+                <i class="icon icon-question"></i>
+                Forgot password
+            </a>
+        </div>
+    </div>
+</div>

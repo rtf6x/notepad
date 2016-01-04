@@ -1,0 +1,333 @@
+* {
+    outline: none;
+}
+
+html {
+    font: 12px/12px 'Open Sans';
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    body, #main {
+        min-height: 600px;
+        min-width: 900px;
+        padding: 0;
+        margin: 0;
+    }
+    body, .login-bg {
+        background: url('../images/back.jpg') no-repeat scroll center center #351f12;
+        background-size: cover;
+    }
+    .vh-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+    }
+}
+
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom dialog/modal headers */
+.ngdialog {
+    h1 {
+        margin: -15px -13px 15px;
+        padding: 15px 40px 15px 12px;
+        border-radius: 4px 4px 0 0;
+        color: #000;
+        font-size: 15px;
+    }
+    &.error h1 { background-color: #d2322d; }
+    &.wait h1 { background-color: #428bca; }
+    &.notify h1 { background-color: #eeeeee; }
+    &.confirm h1 { background-color: #333333; }
+    &.error h1, &.wait h1, &.confirm h1 { color: #ffffff; }
+}
+
+.ngchange_transition {
+    transition: opacity ease 0.5s;
+    opacity: 0;
+    &.absolute {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    &.in {
+        opacity: 1;
+    }
+}
+
+#main {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.login-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(10px);
+}
+
+.login-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(50, 50, 50, 0.5);
+
+    .login-header {
+        font: 20px/30px 'Open Sans';
+        color: #fff;
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translateY(-25%) translateX(-50%);
+        text-align: center;
+    }
+
+    .login-form {
+        position: relative;
+        padding: 20px 20px 20px 43px;
+        width: 210px;
+
+        .form-group {
+            padding: 0 0 10px;
+            input {
+                width: 170px;
+                padding: 6px 10px;
+                background: rgba(255, 255, 255, 0.3);
+                outline: none !important;
+                border: none;
+                border-radius: 5px;
+                color: #fff;
+                font: 500 11px/20px 'Open Sans';
+
+                &::placeholder { opacity: 0.9; }
+            }
+        }
+        .submitButton {
+            border: none;
+            position: absolute;
+            display: block;
+            right: 0;
+            bottom: 33px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 999px;
+            padding: 8px;
+            background: rgba(255,255,255, 0.5);
+            font-size: 16px;
+            line-height: 12px;
+            height: 28px;
+            width: 28px;
+            cursor: pointer;
+            i {
+                margin: -3px 0 0 -2px;
+                display: block;
+            }
+        }
+    }
+    .login-bottom_buttons {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateY(-10%) translateX(-50%);
+
+        a {
+            color: #FFF;
+            text-align: center;
+            font-weight: normal;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 12px;
+            line-height: 16px;
+            width: 60px;
+            vertical-align: top;
+            i {
+                font-size: 30px;
+                line-height: 35px;
+                padding: 0 0 10px;
+                display: block;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.main-wrapper {
+    padding: 10px 0;
+    margin: 0;
+
+    .notes-list-wrapper {
+        padding: 0;
+        width: 900px;
+        height: 558px;
+        border-radius: 10px;
+        margin: 0 auto;
+        overflow: hidden;
+        box-shadow: 0 10px 25px #000;
+
+        .notes-header {
+            background: url('../images/title.png') repeat-x scroll left top transparent;
+            height: 37px;
+            color: #564040;
+            box-shadow: 0 0 10px #000;
+            position: relative;
+            overflow: hidden;
+            padding: 0 15px;
+            text-align: center;
+            font: bold 14px/37px Arial;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25), 0 -1px 0 rgba(0, 0, 0, 1);
+        }
+        .notes-list-box {
+            border: 1px solid rgba(0, 0, 0, 0.6);
+            background: #f0eeed;
+            height: 100%;
+            .notes-list-container {
+                padding: 16px 0 0 13px;
+                margin: 0;
+                width: 230px;
+                float: left;
+                height: 504px;
+                ul {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    width: 212px;
+                    border: 1px solid #bab6b6;
+                    background: url('../images/notes-list-bg.png') repeat-y scroll left top transparent;
+                    height: 460px;
+                    overflow-x: visible;
+                    overflow-y: auto;
+                    li.selected-note {
+                        background: #e0decd;
+                    }
+                    li {
+                        padding: 0;
+                        margin: 0;
+                        border-bottom: 1px dotted #bab6b6;
+                        display: block;
+                        cursor: pointer;
+                        background: #f0eeed;
+
+                        .note-title {
+                            margin: 0;
+                            padding: 0 16px;
+                            display: block;
+                            height: 36px;
+                            input {
+                                background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+                                border: medium none;
+                                color: #000;
+                                font: 14px/20px "Neucha", cursive;
+                                margin: 0;
+                                padding: 0 2px;
+                                vertical-align: bottom;
+                                width: 100%;
+                            }
+                            .noteDate {
+                                color: #bab6b6;
+                                display: block;
+                                font: 10px/10px Arial;
+                                margin: 0;
+                                padding: 0;
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+                .notes-list-controls-container {
+                    padding: 10px 0;
+                    margin: 0;
+                    .addNote {
+                        background: linear-gradient(to top, #f0efef, #fefdfd);
+                        border: 1px solid #b3b2b1;
+                        border-radius: 3px;
+                        color: #868686;
+                        cursor: pointer;
+                        font: 14px/18px Arial;
+                        height: 20px;
+                        margin: 0;
+                        padding: 0;
+                        text-align: center;
+                        width: 26px;
+                    }
+                }
+            }
+            .note-container {
+                padding: 0;
+                margin: 0;
+                width: 654px;
+                float: right;
+                background: #eeeab0;
+                box-shadow: 0 0 6px #555;
+                height: 521px;
+                position: relative;
+                .note-container-top {
+                    background: url('../images/note-top.png') repeat-x scroll left top transparent;
+                    height: 521px;
+
+                    .note-container-bottom {
+                        background: url('../images/note-end.png') repeat-x scroll left bottom transparent;
+                        height: 521px;
+
+                        .note-date {
+                            color: #be775c;
+                            font: 14px/20px Arial;
+                            margin: 0;
+                            padding: 0;
+                            position: absolute;
+                            right: 15px;
+                            text-align: right;
+                            top: 20px;
+                            width: 150px;
+                        }
+                        .note-text {
+                            padding: 50px 0 0;
+                            margin: 0;
+                            .textarea {
+                                background: transparent url("../images/editor-line.png") repeat scroll left -5px;
+                                border: medium none;
+                                font: 24px/36px "Neucha", cursive;
+                                height: 400px;
+                                padding: 0 30px;
+                                resize: none;
+                                width: calc(100% - 60px);
+                                background-attachment: local;
+                            }
+                        }
+                        .note-controls-container {
+                            bottom: 20px;
+                            left: 0;
+                            position: absolute;
+                            width: 100%;
+                            text-align: center;
+                            .removeNote {
+                                padding: 0;
+                                margin: 0;
+                                cursor: pointer;
+                                color: #b65e3f;
+                                font: bold 22px/22px Arial;
+                            }
+                            .logout {
+                                text-decoration: none;
+                                padding: 0;
+                                margin: 0;
+                                color: #b65e3f;
+                                font: bold 22px/22px Arial;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

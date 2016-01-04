@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" type="image/png" href="http://strangefoxes.ru/notepad/favicon.png">
+        <title>Mac Notes</title>
+        <link rel="stylesheet" href="content/styles/app.css"/>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic"/>
+        <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.min.css"/>
+        <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.min.css"/>
+    </head>
+    <body>
+    
+        <div id="main" ng-view></div>
+        
+        <script src="node_modules/angular/angular.js"></script>
+        <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+        <script src="node_modules/angular-route/angular-route.js"></script>
+        <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+        <script src="node_modules/ng-dialog/js/ngDialog.js"></script>
+        
+        <script src="app/app.module.js"></script>
+        
+        <script src="app/core/core.module.js"></script>
+
+        <script src="app/core/errorHandler.js"></script>
+        <script src="app/core/api/interceptor.js"></script>
+        <script src="app/core/api/service.js"></script>
+
+        <script src="app/forgot/module.js"></script>
+        <script src="app/forgot/controller.js"></script>
+        <script src="app/forgot/route.js"></script>
+
+        <script src="app/login/module.js"></script>
+        <script src="app/login/controller.js"></script>
+        <script src="app/login/route.js"></script>
+
+        <script src="app/logout/module.js"></script>
+        <script src="app/logout/route.js"></script>
+        <script src="app/logout/controller.js"></script>
+
+        <script src="app/notes/module.js"></script>
+        <script src="app/notes/controller.js"></script>
+        <script src="app/notes/directives.js"></script>
+        <script src="app/notes/route.js"></script>
+
+        <script src="app/register/module.js"></script>
+        <script src="app/register/controller.js"></script>
+        <script src="app/register/route.js"></script>
+    
+    </body>
+</html>
+

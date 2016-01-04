@@ -1,0 +1,32 @@
+<div data-ng-init="init()">
+    <div class="login-bg"></div>
+    <div class="login-wrapper">
+        <div class="login-header">
+            <p>Hi there. Please authorize to get in</p>
+            <p style="font-size: 12px; line-height: 18px;">Note: Use test/test for testing.</p>
+        </div>
+
+        <div class="login-form vh-center">
+            <div class="form-group">
+                <input autocomplete="off" name="login" type="text" ng-keypress="inputKeydown($event)" id="login"
+                       ng-model="variables.login" placeholder="username">
+            </div>
+            <div class="form-group">
+                <input autocomplete="off" name="password" type="password" ng-keypress="inputKeydown($event)"
+                       id="password" ng-model="variables.password" placeholder="password">
+            </div>
+            <button class="submitButton" ng-click="login()"><i class="icon icon-arrow-right"></i></button>
+        </div>
+
+        <div class="login-bottom_buttons">
+            <a class="registerButton" href="#/register">
+                <i class="icon icon-unlock"></i>
+                Register
+            </a>
+            <a class="forgotButton" href="#/forgot_password">
+                <i class="icon icon-question"></i>
+                Forgot password
+            </a>
+        </div>
+    </div>
+</div>
