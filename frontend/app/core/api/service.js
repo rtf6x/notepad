@@ -19,6 +19,7 @@
             register: $resource(apiUrl + '/register', {}, {
                 send: { method: 'POST', interceptor: interceptor }
             }),
+            // Todo for REST? Maybe...
             notes: $resource(apiUrl + '/notes', {}, {
                 list: { method: 'LIST', interceptor: interceptor },
                 get: { method: 'GET', interceptor: interceptor },
