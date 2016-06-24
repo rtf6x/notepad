@@ -1,5 +1,5 @@
 # Notes
 
-notepad.strangefoxes.ru
+notepad.rootfox.cc
 
 ---

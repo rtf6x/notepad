@@ -2,3 +2,4 @@
 .svn/
 frontend/content/styles/app.css
 node_modules/
+client/bower_components/

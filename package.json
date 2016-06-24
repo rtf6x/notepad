@@ -1,13 +1,6 @@
 {
-  "name": "notepad-nodejs",
+  "name": "notepad",
   "version": "0.1.0",
-  "authors": [
-    {
-      "name": "Alex Trapholov",
-      "email": "trapholov@gmail.com",
-      "homepage": "http://notepad.strangefoxes.ru/"
-    }
-  ],
   "dependencies": {
     "async": "1.4.2",
     "body-parser": "1.14.1",
@@ -15,10 +8,17 @@
     "json-builder": "0.0.2",
     "json-schema": "0.2.2",
     "mongodb": "2.0.46",
+    "nodemailer": "1.10.0"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify-css": "^1.2.2",
+    "gulp-sass": "^2.1.1",
     "supertest": "1.1.0",
     "winston": "1.1.0",
     "should": "7.1.1",
-    "mocha": "2.3.3",
-    "nodemailer": "1.10.0"
+    "mocha": "2.3.3"
   }
 }
