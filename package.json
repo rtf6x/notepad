@@ -2,19 +2,19 @@
   "name": "notepad",
   "version": "0.1.0",
   "dependencies": {
-    "async": "1.4.2",
-    "body-parser": "1.14.1",
-    "express": "4.13.3",
-    "json-builder": "0.0.2",
-    "json-schema": "0.2.2",
-    "mongodb": "2.0.46",
-    "nodemailer": "1.10.0"
+    "async": "^1.4.2",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "json-builder": "^0.0.2",
+    "json-schema": "^0.2.2",
+    "mongodb": "^2.0.46",
+    "nodemailer": "^1.10.0"
   },
   "devDependencies": {
     "gulp": "~3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
-    "gulp-minify-css": "^1.2.2",
+    "gulp-clean-css": "^1.2.2",
     "gulp-sass": "^2.1.1",
     "supertest": "1.1.0",
     "winston": "1.1.0",

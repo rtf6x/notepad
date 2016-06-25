@@ -1,7 +1,7 @@
 var gulp  = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
-    minifyCSS = require('gulp-minify-css'),
+    minifyCSS = require('gulp-clean-css'),
     concat = require('gulp-concat');
 
 gulp.task('css', function() {

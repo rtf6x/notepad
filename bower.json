@@ -4,7 +4,7 @@
   "dependencies": {
     "angular": "1.4.8",
     "angular-cookies": "^1.4.8",
-    "angular-locale": "^0.3.1",
+    "angular-locale": "^0.1.10",
     "angular-route": "1.4.8",
     "angular-resource": "^1.4.8",
     "ng-dialog": "~0.5.6"
