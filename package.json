@@ -1,6 +1,6 @@
 {
   "name": "notepad",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "dependencies": {
     "async": "^1.4.2",
     "body-parser": "^1.14.1",
@@ -11,14 +11,14 @@
     "nodemailer": "^1.10.0"
   },
   "devDependencies": {
-    "gulp": "~3.9.0",
+    "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-clean-css": "^1.2.2",
     "gulp-sass": "^2.1.1",
-    "supertest": "1.1.0",
-    "winston": "1.1.0",
-    "should": "7.1.1",
-    "mocha": "2.3.3"
+    "supertest": "^1.1.0",
+    "winston": "^1.1.0",
+    "should": "^7.1.1",
+    "mocha": "^2.3.3"
   }
 }
