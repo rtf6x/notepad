@@ -7,7 +7,7 @@
 
     /* @ngInject */
     function logout($http, $location) {
-        $http.post('http://strangefoxes.ru:8901/logout', {token: sessionStorage.getItem('token')}).
+        $http.post('http://rootfox.cc:8901/logout', {token: sessionStorage.getItem('token')}).
         success(function (data) {
             sessionStorage.removeItem('token');
             $location.path("/login");

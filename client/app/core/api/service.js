@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    var apiUrl = 'http://strangefoxes.ru:8901';
+    var apiUrl = 'http://rootfox.cc:8901';
 
     angular
         .module('app.core')
