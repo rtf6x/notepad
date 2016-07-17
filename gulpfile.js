@@ -5,10 +5,10 @@ var gulp  = require('gulp'),
     concat = require('gulp-concat');
 
 gulp.task('css', function() {
-    return gulp.src('content/styles/*.scss')
+    return gulp.src('client/content/styles/*.scss')
         .pipe(sass())
         .pipe(minifyCSS())
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
         .pipe(concat('app.css'))
-        .pipe(gulp.dest('content/styles'));
+        .pipe(gulp.dest('client/content/styles'));
 });
