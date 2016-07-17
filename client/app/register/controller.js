@@ -6,7 +6,7 @@
         .controller('register', register);
 
     /* @ngInject */
-    function register($scope, $location) {
+    function register($scope, $location, api) {
         $scope.init = function () {
             $scope.credentials = {};
         };
