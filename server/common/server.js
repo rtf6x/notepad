@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var async = require('async');
+var cors = require('cors');
 var bodyParser = require('body-parser');
 
 var common = require('./common.js');
@@ -10,17 +11,22 @@ var settings = require('../config.js');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.app = express();
+exports.app.use(cors());
 exports.app.use(bodyParser.json());        // to support JSON-encoded bodies
 exports.app.use(bodyParser.urlencoded({    // to support URL-encoded bodies
     extended: true
 }));
 
-exports.app.use(function (request, response, next) {
-    response.removeHeader("x-powered-by");
-    response.header("Access-Control-Allow-Origin", settings.CORS_ACAO);
-    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// exports.app.options('*', cors(), function(){
+//     console.log("preflight")
+// });
+
+// exports.app.use(function (request, response, next) {
+//     response.removeHeader("x-powered-by");
+//     response.header("Access-Control-Allow-Origin", settings.CORS_ACAO);
+//     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.addRequestProcessor = function(func){
