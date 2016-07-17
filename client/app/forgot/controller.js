@@ -14,7 +14,7 @@
         };
 
         $scope.submit = function () {
-            api.forgot.send({
+            api.forgotPassword.send({
                 login: this.credentials.login,
                 email: this.credentials.email
             }, function (response) {
