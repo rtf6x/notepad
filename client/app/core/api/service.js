@@ -13,7 +13,7 @@
             login: $resource(apiUrl + '/login', {}, {
                 auth: { method: 'POST', interceptor: interceptor }
             }),
-            forgotPassword: $resource(apiUrl + '/forgotPassword', {
+            forgotPassword: $resource(apiUrl + '/forgotPassword', {}, {
                 send: { method: 'POST', interceptor: interceptor }
             }),
             register: $resource(apiUrl + '/register', {}, {
