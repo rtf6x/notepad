@@ -6,6 +6,9 @@
 - Change password
 - Settings page
 - Elastic Search
+- CSRF
+- Better session management
+- REST
 
 ##API methods:
 - register(login, email, password)
@@ -19,6 +22,6 @@
 - updateNoteTitle(token, noteId, title)
 - removeNote(token, noteId)
 
-##To start unit tests:
-npm install -g mocha
+##To start integration tests:
+npm install -g mocha &&
 mocha ./tests/notesTest.js
