@@ -8,16 +8,14 @@
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic"/>
         <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css"/>
         <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css"/>
-        <link rel="stylesheet" href="bower_components/fork-me-on-github/fork.css">
+        <link rel="stylesheet" href="bower_components/fork-me-on-github/fork.min.css">
     </head>
     <body>
 
-        <div class="fork-me fork-me-dark">
-            <div class="fork-me">
-                <a class="fork-me-link" target="_blank" href="https://github.com/Trapholov/notepad">
-                    <span class="fork-me-text">Fork Me On GitHub</span>
-                </a>
-            </div>
+        <div class="fork-me fork-me-dark fork-me-fixed" style="z-index: 20000000; background: transparent;">
+            <a class="fork-me-link" target="_blank" href="https://github.com/Trapholov/notepad">
+                <span class="fork-me-text">Fork Me On GitHub</span>
+            </a>
         </div>
     
         <div id="main" ng-view></div>
