@@ -9,17 +9,17 @@
     "json-builder": "^0.0.2",
     "json-schema": "^0.2.2",
     "mongodb": "^2.0.46",
-    "nodemailer": "^2.5.0"
+    "nodemailer": "^3.1.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
-    "gulp-clean-css": "^2.0.10",
-    "gulp-sass": "^2.1.1",
-    "supertest": "^1.1.0",
+    "gulp-clean-css": "^3.0.2",
+    "gulp-sass": "^3.1.0",
+    "supertest": "^3.0.0",
     "winston": "^2.2.0",
-    "should": "^9.0.2",
-    "mocha": "^2.3.3"
+    "should": "^11.2.0",
+    "mocha": "^3.2.0"
   }
 }
