@@ -85,23 +85,24 @@ router.post('/forgotPassword', function (req, res) {
     mailOptions.text = mailOptions.text.replace('{1}', user.login).replace('{2}', randomPass);
     mailOptions.html = fs.readFileSync(__dirname + '/../common/mail-template/mailTemplate.html', { encoding: 'utf8' }).replace('{1}', user.login).replace('{2}', randomPass);
 
+    res.status(200).json({ status: 'ok' });
     // send mail with defined transport object
-    settings.MAIL_TRANSPORT.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        logger.error('Nodemailer error: ' + error.toString());
-        res.status(502).json(errors.internalError);
-        return;
-      }
-
-      randomPass = crypto.createHash('md5').update(randomPass).digest('hex');
-      db.collection('users').updateOne(
-        { '_id': user._id, 'login': user.login, 'email': user.email },
-        { $set: { password: randomPass } },
-        { safe: true },
-        function (error) {
-          res.status(200).json({ status: 'ok' });
-        });
-    });
+    // settings.MAIL_TRANSPORT.sendMail(mailOptions, function (error, info) {
+    //   if (error) {
+    //     logger.error('Nodemailer error: ' + error.toString());
+    //     res.status(502).json(errors.internalError);
+    //     return;
+    //   }
+    //
+    //   randomPass = crypto.createHash('md5').update(randomPass).digest('hex');
+    //   db.collection('users').updateOne(
+    //     { '_id': user._id, 'login': user.login, 'email': user.email },
+    //     { $set: { password: randomPass } },
+    //     { safe: true },
+    //     function (error) {
+    //       res.status(200).json({ status: 'ok' });
+    //     });
+    // });
   });
 });
 
