@@ -1,60 +1,62 @@
 <!DOCTYPE html>
 <html ng-app="app">
-    <head>
-        <meta charset="utf-8">
-        <link rel="shortcut icon" type="image/png" href="favicon.png">
-        <title>Notes</title>
-        <link rel="stylesheet" href="content/styles/app.css"/>
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic"/>
-        <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css"/>
-        <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css"/>
-        <link rel="stylesheet" href="bower_components/fork-me-on-github/fork.min.css">
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <title>Notes</title>
+    <link rel="stylesheet" href="content/styles/app.css"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic"/>
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css"/>
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css"/>
+    <link rel="stylesheet" href="bower_components/fork-me-on-github/fork.min.css">
+</head>
+<body>
+<div class="fork-me fork-me-dark fork-me-fixed" style="z-index: 20000000; background: transparent;">
+    <a class="fork-me-link" target="_blank" href="https://github.com/Trapholov/notepad">
+        <span class="fork-me-text">Fork Me On GitHub</span>
+    </a>
+</div>
 
-        <div class="fork-me fork-me-dark fork-me-fixed" style="z-index: 20000000; background: transparent;">
-            <a class="fork-me-link" target="_blank" href="https://github.com/Trapholov/notepad">
-                <span class="fork-me-text">Fork Me On GitHub</span>
-            </a>
-        </div>
-    
-        <div id="main" ng-view></div>
-        
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
-        
-        <script src="app/app.module.js"></script>
-        
-        <script src="app/core/core.module.js"></script>
+<div id="main" ui-view></div>
 
-        <script src="app/core/errorHandler.js"></script>
-        <script src="app/core/api/interceptor.js"></script>
-        <script src="app/core/api/service.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 
-        <script src="app/forgot/module.js"></script>
-        <script src="app/forgot/controller.js"></script>
-        <script src="app/forgot/route.js"></script>
+<script src="app/app.module.js"></script>
+<script src="app/app.config.js"></script>
 
-        <script src="app/login/module.js"></script>
-        <script src="app/login/controller.js"></script>
-        <script src="app/login/route.js"></script>
+<script src="app/core/core.module.js"></script>
 
-        <script src="app/logout/module.js"></script>
-        <script src="app/logout/route.js"></script>
-        <script src="app/logout/controller.js"></script>
+<script src="app/core/errorHandler.js"></script>
+<script src="app/core/api/interceptor.js"></script>
+<script src="app/core/api/service.js"></script>
 
-        <script src="app/notes/module.js"></script>
-        <script src="app/notes/controller.js"></script>
-        <script src="app/notes/directives.js"></script>
-        <script src="app/notes/route.js"></script>
+<script src="app/forgot/module.js"></script>
+<script src="app/forgot/controller.js"></script>
+<script src="app/forgot/route.js"></script>
 
-        <script src="app/register/module.js"></script>
-        <script src="app/register/controller.js"></script>
-        <script src="app/register/route.js"></script>
-    
-    </body>
+<script src="app/login/module.js"></script>
+<script src="app/login/controller.js"></script>
+<script src="app/login/route.js"></script>
+
+<script src="app/logout/module.js"></script>
+<script src="app/logout/route.js"></script>
+<script src="app/logout/controller.js"></script>
+
+<script src="app/notes/module.js"></script>
+<script src="app/notes/controller.js"></script>
+<script src="app/notes/directives.js"></script>
+<script src="app/notes/route.js"></script>
+
+<script src="app/register/module.js"></script>
+<script src="app/register/controller.js"></script>
+<script src="app/register/route.js"></script>
+
+</body>
 </html>
 

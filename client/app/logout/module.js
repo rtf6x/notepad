@@ -1,6 +1,3 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular.module('app.logout', []);
-
-})();
+angular.module('app.logout', []);

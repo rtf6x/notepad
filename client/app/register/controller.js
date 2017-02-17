@@ -1,41 +1,37 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular
-        .module('app.register')
-        .controller('register', register);
+angular
+  .module('app.register')
+  .controller('registerController', register);
 
-    /* @ngInject */
-    function register($scope, $location, api) {
-        $scope.init = function () {
-            $scope.credentials = {};
-        };
+/* @ngInject */
+function register(localStorageService, $state, api) {
+  var vm = this;
+  vm.credentials = {};
 
-        $scope.inputKeydown = function ($event) {
-            if ($event.keyCode == 13) {
-                $scope.register();
-            }
-        };
-
-        $scope.register = function () {
-            var that = this;
-            api.register.send({
-                login: this.credentials.login,
-                email: this.credentials.email,
-                password: this.credentials.password
-            }, function (response) {
-                if (!response.error) {
-                    api.login.auth({
-                        login: that.credentials.login,
-                        password: that.credentials.password
-                    }, function (response) {
-                        if (response.result.token) {
-                            sessionStorage.setItem('token', response.result.token);
-                            $location.path("/notes");
-                        }
-                    });
-                }
-            });
-        };
+  vm.inputKeydown = function ($event) {
+    if ($event.keyCode == 13) {
+      vm.register();
     }
-})();
+  };
+
+  vm.register = function () {
+    api.register.send({
+      login: vm.credentials.login,
+      email: vm.credentials.email,
+      password: vm.credentials.password
+    }, function (response) {
+      if (!response.error) {
+        api.login.auth({
+          login: vm.credentials.login,
+          password: vm.credentials.password
+        }, function (response) {
+          if (response.token) {
+            localStorageService.set('token', response.token);
+            $state.go('notes');
+          }
+        });
+      }
+    });
+  };
+}

@@ -1,10 +1,8 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular.module('app.core', [
-        'ngRoute',
-        'ngResource',
-        'ngDialog'
-    ]);
+angular.module('app.core', [
+  'ngRoute',
+  'ngResource',
+  'ngDialog'
+]);
 
-})();

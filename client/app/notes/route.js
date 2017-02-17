@@ -1,11 +1,10 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular.module('app.notes').config(function($routeProvider){
-        $routeProvider.when('/notes', {
-            templateUrl: 'app/notes/layout.html',
-            controller: 'notes'
-        });
-    });
-
-})();
+angular.module('app').config(function ($stateProvider) {
+  $stateProvider.state('notes', {
+    url: '/notes',
+    templateUrl: 'app/notes/layout.html',
+    controller: 'notesController',
+    controllerAs: 'vm'
+  });
+});

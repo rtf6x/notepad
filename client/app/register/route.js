@@ -1,11 +1,10 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular.module('app.register').config(function($routeProvider){
-        $routeProvider.when('/register', {
-            templateUrl: 'app/register/layout.html',
-            controller: 'register'
-        });
-    });
-
-})();
+angular.module('app').config(function ($stateProvider) {
+  $stateProvider.state('register', {
+    url: '/register',
+    templateUrl: 'app/register/layout.html',
+    controller: 'registerController',
+    controllerAs: 'vm'
+  });
+});

@@ -1,7 +1,6 @@
 module.exports = {
     "SERVICE_NAME": "notepad",
     "PORT": 8901,
-    "MONGO_ID": "notes",
     "DB_NAME": "notepad",
     "DB_SERVER": "127.0.0.1",
     "DB_PORT": 27017,

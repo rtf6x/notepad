@@ -1,34 +1,34 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular
-        .module('app.login')
-        .controller('login', login);
+angular
+  .module('app.login')
+  .controller('loginController', loginController);
 
-    /* @ngInject */
-    function login($scope, $location, api) {
-        $scope.init = function () {
-            if (sessionStorage.getItem('token')) {
-                $location.path("/notes");
-            }
-        };
+/* @ngInject */
+function loginController($state, api, localStorageService) {
+  this.variables = {};
 
-        $scope.inputKeydown = function ($event) {
-            if ($event.keyCode == 13) {
-                $scope.login();
-            }
-        };
-
-        $scope.login = function () {
-            api.login.auth({
-                login: this.variables.login,
-                password: this.variables.password
-            }, function (response) {
-                if (response.result.token) {
-                    sessionStorage.setItem('token', response.result.token);
-                    $location.path("/notes");
-                }
-            });
-        };
+  this.init = function () {
+    if (localStorageService.get('token')) {
+      $state.go('notes');
     }
-})();
+  };
+
+  this.inputKeydown = function ($event) {
+    if ($event.keyCode == 13) {
+      this.login();
+    }
+  };
+
+  this.login = function () {
+    api.login.auth({
+      login: this.variables.login,
+      password: this.variables.password
+    }, function (response) {
+      if (response.token) {
+        localStorageService.set('token', response.token);
+        $state.go('notes');
+      }
+    });
+  };
+}

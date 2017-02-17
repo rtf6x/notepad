@@ -1,11 +1,10 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular.module('app.logout').config(function($routeProvider){
-        $routeProvider.when('/logout', {
-            template: '',
-            controller: 'logout'
-        });
-    });
-
-})();
+angular.module('app').config(function ($stateProvider) {
+  $stateProvider.state('logout', {
+    url: '/logout',
+    template: '',
+    controller: 'logoutController',
+    controllerAs: 'vm'
+  });
+});

@@ -1,4 +1,4 @@
-<div data-ng-init="init()">
+<div data-ng-init="vm.init()">
     <div class="login-bg"></div>
     <div class="login-wrapper">
         <div class="login-header">
@@ -8,22 +8,22 @@
 
         <div class="login-form vh-center">
             <div class="form-group">
-                <input autocomplete="off" name="login" type="text" ng-keypress="inputKeydown($event)" id="login"
-                       ng-model="variables.login" placeholder="username">
+                <input autocomplete="off" name="login" type="text" ng-keypress="vm.inputKeydown($event)" id="login"
+                       ng-model="vm.variables.login" placeholder="username">
             </div>
             <div class="form-group">
-                <input autocomplete="off" name="password" type="password" ng-keypress="inputKeydown($event)"
-                       id="password" ng-model="variables.password" placeholder="password">
+                <input autocomplete="off" name="password" type="password" ng-keypress="vm.inputKeydown($event)"
+                       id="password" ng-model="vm.variables.password" placeholder="password">
             </div>
-            <button class="submitButton" ng-click="login()"><i class="icon icon-arrow-right"></i></button>
+            <button class="submitButton" ng-click="vm.login()"><i class="icon icon-arrow-right"></i></button>
         </div>
 
         <div class="login-bottom_buttons">
-            <a class="registerButton" href="#/register">
+            <a class="registerButton" ui-sref="register">
                 <i class="icon icon-unlock"></i>
                 Register
             </a>
-            <a class="forgotButton" href="#/forgot_password">
+            <a class="forgotButton" ui-sref="forgot-password">
                 <i class="icon icon-question"></i>
                 Forgot password
             </a>

@@ -1,11 +1,10 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular.module('app.forgot').config(function($routeProvider){
-        $routeProvider.when('/forgot_password', {
-            templateUrl: 'app/forgot/layout.html',
-            controller: 'forgot'
-        });
-    });
-
-})();
+angular.module('app').config(function ($stateProvider) {
+  $stateProvider.state('forgot-password', {
+    url: '/forgot-password',
+    templateUrl: 'app/forgot/layout.html',
+    controller: 'forgotController',
+    controllerAs: 'vm'
+  });
+});

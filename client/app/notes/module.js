@@ -1,6 +1,3 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular.module('app.notes', []);
-
-})();
+angular.module('app.notes', []);

@@ -1,22 +1,21 @@
-<div data-ng-init="init()" class="main-wrapper vh-center">
+<div data-ng-init="vm.init()" class="main-wrapper vh-center">
     <div class="notes-list-wrapper">
         <div class="notes-header">
-            <p>{{currentNoteTitle}}</p>
+            <p>{{vm.currentNote.title}}</p>
         </div>
 
         <div class="notes-list-box">
             <div class="notes-list-container">
                 <ul>
-                    <li ng-repeat="note in notes" ng-class="{ 'selected-note': $index == selectedIndex }">
-                <span class="note-title" ng-click="loadNote(note._id, $index);">
-                    <input ng-model="note.title"
-                           ng-blur="updateNoteTitle(note._id, note.title)" />
+                    <li ng-repeat="note in vm.notes" ng-class="{ 'selected-note': $index == selectedIndex }">
+                <span class="note-title" ng-click="vm.loadNote(note._id, $index);">
+                    <input ng-model="note.title" ng-blur="vm.updateNoteTitle(note._id, note.title)"/>
                     <span class="noteDate">{{note.date | date:'d MMMM, H:mm'}}</span>
                 </span>
                     </li>
                 </ul>
                 <div class="notes-list-controls-container">
-                    <div ng-click="addNote()" class="addNote"><i class="icon icon-plus"></i></div>
+                    <div ng-click="vm.addNote()" class="addNote"><i class="icon icon-plus"></i></div>
                 </div>
             </div>
 
@@ -24,19 +23,19 @@
                 <div class="note-container-top">
                     <div class="note-container-bottom">
                         <div class="note-date">
-                            {{currentNoteDate | date:'d MMMM, H:mm'}}
+                            {{vm.currentNote.date | date:'d MMMM, H:mm'}}
                         </div>
                         <div class="note-text">
                             <div contenteditable="true" class="textarea"
-                                 ng-model="currentNoteNote"
-                                 ng-blur="updateNote(currentNoteNoteId, currentNoteNote)">
+                                 ng-model="vm.currentNote.note"
+                                 ng-blur="vm.updateNote(vm.currentNote._id, vm.currentNote.note)">
                             </div>
                         </div>
                         <div class="note-controls-container">
-                            <span ng-click="removeNote(currentNoteNoteId)" class="removeNote">
+                            <span ng-click="vm.removeNote(vm.currentNote._id)" class="removeNote">
                                 <i class="icon icon-trash-empty"></i>
                             </span>
-                            <a href="#/logout" class="logout">
+                            <a ui-sref="logout" class="logout">
                                 <i class="icon icon-power"></i>
                             </a>
                         </div>

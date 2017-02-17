@@ -1,81 +1,78 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular
-        .module('app.notes')
-        .controller('notes', notesController);
+angular
+  .module('app.notes')
+  .controller('notesController', notesController);
 
-    /* @ngInject */
-    function notesController($scope, api) {
-        var that = this;
-        $scope.selectedIndex = 1;
-        $scope.init = function () {
-            api.getNotesList.send({
-                token: sessionStorage.getItem('token')
-            }, function (response) {
-                if (response.result.notes){
-                    $scope.notes = response.result.notes;
-                    if ($scope.notes.length) {
-                        $scope.loadNote($scope.notes[0]._id, 0);
-                    } else {
-                        $scope.addNote();
-                    }
-                }
-            });
-        };
+/* @ngInject */
+function notesController(api, localStorageService) {
+  var vm = this;
 
-        $scope.loadNote = function (noteId, index) {
-            $scope.selectedIndex = index;
-            api.loadNote.send({
-                token: sessionStorage.getItem('token'),
-                noteId: noteId
-            }, function (response) {
-                if (response.result.note){
-                    $scope.currentNoteNoteId = response.result.note._id;
-                    $scope.currentNoteTitle = response.result.note.title;
-                    $scope.currentNoteNote = response.result.note.note;
-                    $scope.currentNoteDate = response.result.note.date;
-                    that.lastUpdated = Date.now();
-                }
-            });
-        };
+  vm.selectedIndex = 1;
 
-        $scope.updateNote = function (noteId, newNote) {
-            api.updateNote.send({
-                token: sessionStorage.getItem('token'),
-                noteId: noteId,
-                title: $scope.currentNoteTitle,
-                note: newNote
-            }, function (response) {
-                $scope.init(); // update list
-            });
-        };
+  vm.init = function () {
+    api.getNotesList.send({
+      token: localStorageService.get('token')
+    }, function (response) {
+      if (response.notes) {
+        vm.notes = response.notes;
+        if (vm.notes.length) {
+          vm.loadNote(vm.notes[0]._id, 0);
+        } else {
+          vm.addNote();
+        }
+      }
+    });
+  };
 
-        $scope.updateNoteTitle = function (noteId, newTitle) {
-            $scope.currentNoteTitle = newTitle;
-            api.updateNoteTitle.send({
-                token: sessionStorage.getItem('token'),
-                noteId: noteId,
-                title: newTitle
-            }, function (response) {
-                $scope.init(); // update list
-            });
-        };
+  vm.loadNote = function (noteId, index) {
+    vm.selectedIndex = index;
+    api.loadNote.send({
+      token: localStorageService.get('token'),
+      noteId: noteId
+    }, function (response) {
+      if (response.note) {
+        vm.currentNote = response.note;
+        vm.lastUpdated = Date.now();
+      }
+    });
+  };
 
-        $scope.addNote = function () {
-            api.addNote.send({
-                token: sessionStorage.getItem('token')
-            }, function (response) {
-                $scope.init(); // update list
-            });
-        };
-        $scope.removeNote = function (noteId) {
-            api.removeNote.send({
-                token: sessionStorage.getItem('token'),
-                noteId: noteId
-            }, function (response) {
-                $scope.init(); // update list
-            });
-        };
-    }
-})();
+  vm.updateNote = function (noteId, newNote) {
+    api.updateNote.send({
+      token: localStorageService.get('token'),
+      noteId: noteId,
+      title: vm.currentNote.title,
+      note: newNote
+    }, function (response) {
+      vm.init(); // update list
+    });
+  };
+
+  vm.updateNoteTitle = function (noteId, newTitle) {
+    vm.currentNote.title = newTitle;
+    api.updateNoteTitle.send({
+      token: localStorageService.get('token'),
+      noteId: noteId,
+      title: newTitle
+    }, function (response) {
+      vm.init(); // update list
+    });
+  };
+
+  vm.addNote = function () {
+    api.addNote.send({
+      token: localStorageService.get('token')
+    }, function (response) {
+      vm.init(); // update list
+    });
+  };
+  vm.removeNote = function (noteId) {
+    api.removeNote.send({
+      token: localStorageService.get('token'),
+      noteId: noteId
+    }, function (response) {
+      vm.init(); // update list
+    });
+  };
+}

@@ -1,16 +1,14 @@
-(function() {
-    'use strict';
+'use strict';
 
-    angular
-        .module('app.logout')
-        .controller('logout', logout);
+angular.module('app.logout')
+  .controller('logoutController', logoutController);
 
-    /* @ngInject */
-    function logout($http, $location) {
-        $http.post('http://rootfox.cc:8901/logout', {token: sessionStorage.getItem('token')}).
-        success(function (data) {
-            sessionStorage.removeItem('token');
-            $location.path("/login");
-        });
-    }
-})();
+/* @ngInject */
+function logoutController(api, $state, localStorageService) {
+  api.logout.send({
+    token: localStorageService.get('token')
+  }, function (response) {
+    localStorageService.remove('token');
+    $state.go('login');
+  });
+}

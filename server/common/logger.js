@@ -41,8 +41,7 @@ var logger = new (winston.Logger)({
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 logger.log = function () {
-  var args = arguments;
-  winston.Logger.prototype.log.apply(this, args);
+  winston.Logger.prototype.log.apply(this, arguments);
 };
 
 module.exports = logger;
