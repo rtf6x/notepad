@@ -1,0 +1,170 @@
+.notes-list-wrapper {
+  padding: 0;
+  width: 900px;
+  height: 558px;
+  border-radius: 10px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 10px 25px #000;
+}
+
+.notes-header {
+  background: url('../images/title.png') repeat-x scroll left top transparent;
+  height: 37px;
+  color: #564040;
+  box-shadow: 0 0 10px #000;
+  position: relative;
+  overflow: hidden;
+  padding: 0 15px;
+  text-align: center;
+  font: bold 14px/37px Arial;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25), 0 -1px 0 rgba(0, 0, 0, 1);
+}
+
+.notes-list-box {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  background: #f0eeed;
+  height: 100%;
+}
+
+.notes-list-container {
+  padding: 16px 0 0 13px;
+  margin: 0;
+  width: 230px;
+  float: left;
+  height: 504px;
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 212px;
+    border: 1px solid #bab6b6;
+    background: url('../images/notes-list-bg.png') repeat-y scroll left top transparent;
+    height: 460px;
+    overflow-x: visible;
+    overflow-y: auto;
+    li.selected-note {
+      background: #e0decd;
+    }
+    li {
+      padding: 0;
+      margin: 0;
+      border-bottom: 1px dotted #bab6b6;
+      display: block;
+      cursor: pointer;
+      background: #f0eeed;
+
+      .note-title {
+        margin: 0;
+        padding: 0 16px;
+        display: block;
+        height: 36px;
+        input {
+          background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+          border: medium none;
+          color: #000;
+          font: 14px/20px "Neucha", cursive;
+          margin: 0;
+          padding: 0 2px;
+          vertical-align: bottom;
+          width: 100%;
+        }
+        .noteDate {
+          color: #bab6b6;
+          display: block;
+          font: 10px/10px Arial;
+          margin: 0;
+          padding: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.notes-list-controls-container {
+  padding: 10px 0;
+  margin: 0;
+  .addNote {
+    background: linear-gradient(to top, #f0efef, #fefdfd);
+    border: 1px solid #b3b2b1;
+    border-radius: 3px;
+    color: #868686;
+    cursor: pointer;
+    font: 14px/18px Arial;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 26px;
+  }
+}
+
+.note-container {
+  padding: 0;
+  margin: 0;
+  width: 654px;
+  float: right;
+  background: #eeeab0;
+  box-shadow: 0 0 6px #555;
+  height: 521px;
+  position: relative;
+}
+
+.note-container-top {
+  background: url('../images/note-top.png') repeat-x scroll left top transparent;
+  height: 521px;
+}
+
+.note-container-bottom {
+  background: url('../images/note-end.png') repeat-x scroll left bottom transparent;
+  height: 521px;
+
+  .note-date {
+    color: #be775c;
+    font: 14px/20px Arial;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 15px;
+    text-align: right;
+    top: 20px;
+    width: 150px;
+  }
+  .note-text {
+    padding: 50px 0 0;
+    margin: 0;
+    .textarea {
+      background: transparent url("../images/editor-line.png") repeat scroll left -5px;
+      border: medium none;
+      font: 24px/36px "Neucha", cursive;
+      height: 400px;
+      padding: 0 30px;
+      resize: none;
+      width: calc(100% - 60px);
+      background-attachment: local;
+    }
+  }
+}
+
+.note-controls-container {
+  bottom: 20px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  .removeNote {
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #b65e3f;
+    font: bold 22px/22px Arial;
+  }
+  .logout {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    color: #b65e3f;
+    font: bold 22px/22px Arial;
+  }
+}

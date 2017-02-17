@@ -1,5 +1,5 @@
 .idea/
-.svn/
-frontend/content/styles/app.css
+client/content/styles/app.css
+server/config.js
 node_modules/
 client/bower_components/
