@@ -1,5 +1,7 @@
 var router = require('express').Router();
 var crypto = require('crypto');
+var fs = require('fs');
+var mailTemplate = require('../common/mail-template/mailTemplate.js');
 
 // todo: add json-schema
 
@@ -49,7 +51,8 @@ router.post('/logout', function (req, res) {
 
 router.post('/forgotPassword', function (req, res) {
   if ('undefined' == typeof req.body.login && 'undefined' == typeof req.body.email) {
-    return callback(invalidParamError);
+    res.status(403).json(errors.invalidParamError);
+    return;
   }
   var searchParams;
   if ('undefined' != typeof req.body.email) {
@@ -80,7 +83,7 @@ router.post('/forgotPassword', function (req, res) {
     var mailOptions = JSON.parse(JSON.stringify(mailTemplate));
     mailOptions.to = user.email;
     mailOptions.text = mailOptions.text.replace('{1}', user.login).replace('{2}', randomPass);
-    mailOptions.html = fs.readFileSync('./common/mail-template/mailTemplate.html', { encoding: 'utf8' }).replace('{1}', user.login).replace('{2}', randomPass);
+    mailOptions.html = fs.readFileSync(__dirname + '/../common/mail-template/mailTemplate.html', { encoding: 'utf8' }).replace('{1}', user.login).replace('{2}', randomPass);
 
     // send mail with defined transport object
     settings.MAIL_TRANSPORT.sendMail(mailOptions, function (error, info) {
