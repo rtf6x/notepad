@@ -5,10 +5,8 @@ angular
   .controller('notesController', notesController);
 
 /* @ngInject */
-function notesController(api, localStorageService) {
+function notesController(api, localStorageService, $scope) {
   var vm = this;
-
-  vm.selectedIndex = 1;
 
   vm.init = function () {
     api.getNotesList.send({
@@ -17,7 +15,7 @@ function notesController(api, localStorageService) {
       if (response.notes) {
         vm.notes = response.notes;
         if (vm.notes.length) {
-          vm.loadNote(vm.notes[0]._id, 0);
+          vm.loadNote(vm.notes[0]._id);
         } else {
           vm.addNote();
         }
@@ -25,8 +23,10 @@ function notesController(api, localStorageService) {
     });
   };
 
-  vm.loadNote = function (noteId, index) {
-    vm.selectedIndex = index;
+  vm.loadNote = function (noteId) {
+    if (vm.currentNote && noteId == vm.currentNote._id){
+      return;
+    }
     api.loadNote.send({
       token: localStorageService.get('token'),
       noteId: noteId
@@ -75,4 +75,18 @@ function notesController(api, localStorageService) {
       vm.init(); // update list
     });
   };
+
+  $scope.$watch('vm.currentNote', function(newNote, oldNote){
+    if (!oldNote || newNote._id != oldNote._id){
+      return;
+    }
+    if (newNote.title != oldNote.title){
+      vm.updateNoteTitle(newNote._id, newNote.title);
+    }
+    // console.log('newNote:', newNote);
+    // console.log('oldNote:', oldNote);
+    if (newNote.note != oldNote.note){
+      vm.updateNote(newNote._id, newNote.note);
+    }
+  });
 }

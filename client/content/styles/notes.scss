@@ -10,8 +10,6 @@
 
 .notes-header {
   background: url('../images/title.png') repeat-x scroll left top transparent;
-  height: 37px;
-  color: #564040;
   box-shadow: 0 0 10px #000;
   position: relative;
   overflow: hidden;
@@ -19,6 +17,18 @@
   text-align: center;
   font: bold 14px/37px Arial;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25), 0 -1px 0 rgba(0, 0, 0, 1);
+  input {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    height: 37px;
+    color: #564040;
+    font: 14px/20px "Neucha", cursive;
+    margin: 0;
+    padding: 0 2px;
+    vertical-align: bottom;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .notes-list-box {
@@ -59,9 +69,9 @@
         padding: 0 16px;
         display: block;
         height: 36px;
-        input {
-          background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-          border: medium none;
+        .title {
+          //background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+          //border: medium none;
           color: #000;
           font: 14px/20px "Neucha", cursive;
           margin: 0;
