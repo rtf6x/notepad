@@ -4,7 +4,7 @@ var crypto = require('crypto');
 router.post('/register', function (req, res) {
   var pass = crypto.createHash('md5').update(req.body.password).digest('hex');
   if (!common.validateEmail(req.body.email)) {
-    return callback(errors.invalidParamError);
+    return res.status(403).json({ status: 'email is invalid' });
   }
 
   db.collection('users').find({ $or: [{ login: req.body.login }, { email: req.body.email }] }).toArray(function (error, users) {
