@@ -21,7 +21,7 @@ MongoClient.connect(
       console.error(err);
       process.exit(1);
     }
-    global.db = client.db('skinswipe_prod');
+    global.db = client.db(settings.DB_NAME);
     console.log('Connected to Mongo');
   }
 );
