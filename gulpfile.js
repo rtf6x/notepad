@@ -1,17 +1,23 @@
-var gulp = require('gulp'),
-  sass = require('gulp-sass'),
-  autoprefixer = require('autoprefixer'),
-  postcss = require('gulp-postcss'),
-  minifyCSS = require('gulp-clean-css'),
-  concat = require('gulp-concat');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefixer = require('autoprefixer');
+const postcss = require('gulp-postcss');
+const minifyCSS = require('gulp-clean-css');
+const concat = require('gulp-concat');
 
-gulp.task('css', function () {
+const css = done => {
   return gulp.src('client/content/styles/*.scss')
     .pipe(sass())
     .pipe(minifyCSS())
-    .pipe(postcss([autoprefixer({ add: false, browsers: ['last 2 version', 'safari 5', 'ie 8', 'ie 9'] })]))
+    .pipe(postcss())
     .pipe(concat('app.css'))
     .pipe(gulp.dest('client/content/styles'));
-});
+};
 
-gulp.task('default', ['css']);
+const finish = done => {
+  done();
+  process.exit(1);
+};
+
+module.exports.css = gulp.series(css, finish);
+module.exports.default = finish;

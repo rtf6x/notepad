@@ -22,5 +22,15 @@
     "should": "^13.2.3",
     "supertest": "^4.0.2",
     "winston": "^3.2.1"
-  }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
