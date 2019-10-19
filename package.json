@@ -2,7 +2,6 @@
   "name": "notepad",
   "version": "0.0.1",
   "dependencies": {
-    "async": "^2.0.0",
     "body-parser": "^1.16.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
