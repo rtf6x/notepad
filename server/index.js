@@ -13,17 +13,20 @@ var routes = require('./routes');
 
 var app = express();
 
-MongoClient.connect('mongodb://' + settings.DB_USER + ':' + settings.DB_PASSWORD + '@' + settings.DB_SERVER + ':' + settings.DB_PORT + '/' + settings.DB_NAME + '?w=1&journal=false&fsync=true&safe=true', function (err, db) {
+MongoClient.connect('mongodb://' + settings.DB_USER + ':' + settings.DB_PASSWORD + '@' + settings.DB_SERVER + ':' + settings.DB_PORT + '/' + settings.DB_NAME + '?w=1&journal=false&fsync=true&safe=true', {
+  useUnifiedTopology: true,
+}, function (err, db) {
   if (err || !db) {
     logger.error('Mongo connection error: ' + err.toString());
     process.exit(-1);
   }
+  logger.info('Mongo connection estabilished');
   global.db = db;
 });
 
 app.use('/', express.static(__dirname + '/../client/'));
 app.get('/', function (req, res) {
-  res.redirect('index.html')
+  res.redirect('index.html');
 });
 
 app.use(morgan('common'));

@@ -1,8 +1,9 @@
-var winston = require('winston');
-var settings = require('../config.js');
+const { createLogger, format, transports } = require('winston');
+const { combine, prettyPrint, colorize } = format;
+// const settings = require('../config.js');
 
 var logTransports = [
-  new (winston.transports.File)({
+  new transports.File({
     filename: './error.log',
     level: 'error',
     name: 'file.error',
@@ -13,7 +14,7 @@ var logTransports = [
     maxFiles: 2
   }),
 
-  new (winston.transports.File)({
+  new transports.File({
     filename: './all-logs.log',
     name: 'file.info',
     json: false,
@@ -22,39 +23,16 @@ var logTransports = [
     maxsize: 25000000,
     maxFiles: 2,
     level: 'silly'
-  })
+  }),
+  new transports.Console(),
 ];
 
-logTransports.push(new (winston.transports.Console)({
-  json: false,
-  timestamp: false,
+const logger = createLogger({
+  level: 'info',
+  timestamp: true,
   handleExceptions: false,
-  colorize: true,
-  level: 'silly'
-}));
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var logger = new (winston.Logger)({
+  format: combine(colorize(), prettyPrint(), format.splat(), format.simple()),
   transports: logTransports,
-  exitOnError: true
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-logger.log = function () {
-  winston.Logger.prototype.log.apply(this, arguments);
-};
-
 module.exports = logger;
-module.exports.setConfig = function (config) {
-  settings.LOGGER = config;
-  logger.remove(winston.transports.Console);
-  logger.add(winston.transports.Console, {
-    json: false,
-    timestamp: false,
-    handleExceptions: false,
-    colorize: true,
-    level: 'silly'
-  });
-};
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
