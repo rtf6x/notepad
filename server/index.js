@@ -13,16 +13,18 @@ var routes = require('./routes');
 
 var app = express();
 
-MongoClient.connect('mongodb://' + settings.DB_USER + ':' + settings.DB_PASSWORD + '@' + settings.DB_SERVER + ':' + settings.DB_PORT + '/' + settings.DB_NAME + '?w=1&journal=false&fsync=true&safe=true', {
-  useUnifiedTopology: true,
-}, function (err, db) {
-  if (err || !db) {
-    logger.error('Mongo connection error: ' + err.toString());
-    process.exit(-1);
+MongoClient.connect(
+  'mongodb://' + settings.DB_USER + ':' + settings.DB_PASSWORD + '@' + settings.DB_SERVER + ':' + settings.DB_PORT + '/' + settings.DB_NAME + '?w=1&journal=false&fsync=true&safe=true',
+  { useNewUrlParser: true, useUnifiedTopology: true, autoIndex: true },
+  (err, client) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    global.db = client.db('skinswipe_prod');
+    console.log('Connected to Mongo');
   }
-  logger.info('Mongo connection estabilished');
-  global.db = db;
-});
+);
 
 app.use('/', express.static(__dirname + '/../client/'));
 app.get('/', function (req, res) {
