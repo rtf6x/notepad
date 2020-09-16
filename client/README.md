@@ -2,7 +2,7 @@
 
 ---
 
-##Todo:
+## Todo:
 - One repository for back and front instead of two
 - REST
 - Tests
@@ -25,8 +25,8 @@
 - Domain name
 - Android app
 
-##CHANGELOG:
-###04.01.16:
+## CHANGELOG:
+### 04.01.16:
 - Angular guidelines
 - Modular
 - Move API calls to service
@@ -34,7 +34,7 @@
 - Dependency injection
 - Error handler
 - Error dialogs
-###Somewhere in past:
+### Somewhere in past:
 - GULP config
 - NPM config
 - htaccess
