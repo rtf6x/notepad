@@ -1,6 +1,5 @@
 <script>
   import { onMount, tick } from 'svelte';
-  import { overlayScroll } from './lib/overlayScroll.js';
   import { normalizeHtml, normalizeTitle } from './lib/noteHtml.js';
   import {
     listNotes,
@@ -183,8 +182,7 @@
       </div>
       <div class="notes-list-box">
         <div class="notes-list-container">
-          <div class="notes-list-scroll" use:overlayScroll>
-            <ul>
+          <ul>
             {#each notes as note (note.id)}
               <li class:selected-note={note.id === currentId}>
                 <button
@@ -198,8 +196,7 @@
                 </button>
               </li>
             {/each}
-            </ul>
-          </div>
+          </ul>
           <div class="notes-list-controls-container">
             <button type="button" class="addNote" onclick={addNote} aria-label="Add note">
               <i class="icon icon-plus"></i>

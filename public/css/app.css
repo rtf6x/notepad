@@ -328,10 +328,6 @@ p {
   float: left;
   height: 504px;
 }
-.notes-list-container .notes-list-scroll {
-  width: 212px;
-  height: 460px;
-}
 .notes-list-container ul {
   padding: 0;
   margin: 0;
@@ -339,6 +335,21 @@ p {
   width: 212px;
   border: 1px solid #bab6b6;
   background: url("../images/notes-list-bg.png") repeat-y scroll left top transparent;
+  height: 460px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+.notes-list-container ul::-webkit-scrollbar {
+  width: 8px;
+}
+.notes-list-container ul::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+.notes-list-container ul::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.34);
 }
 .notes-list-container ul li.selected-note {
   background: #e0decd;
