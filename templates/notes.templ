@@ -1,0 +1,75 @@
+package templates
+
+import "github.com/rtf6x/notepad/internal/view"
+
+templ Notes(data view.NotesPage) {
+	<!doctype html>
+	<html lang="en">
+		<head>
+			@head("Notes — Notepad")
+		</head>
+		<body>
+			<div class="main-wrapper vh-center">
+				<div class="notes-list-wrapper">
+					<div class="notes-header">
+						<input id="noteTitle" form="noteForm" name="title" value={ data.CurrentTitle }/>
+					</div>
+					<div class="notes-list-box">
+						<div class="notes-list-container">
+							<ul>
+								for _, note := range data.Notes {
+									if note.Selected {
+										<li class="selected-note">
+											<a class="note-title" href={ templ.URL("/notes/" + note.ID) }>
+												<span class="title">{ note.Title }</span>
+												<span class="noteDate">{ note.DateText }</span>
+											</a>
+										</li>
+									} else {
+										<li>
+											<a class="note-title" href={ templ.URL("/notes/" + note.ID) }>
+												<span class="title">{ note.Title }</span>
+												<span class="noteDate">{ note.DateText }</span>
+											</a>
+										</li>
+									}
+								}
+							</ul>
+							<div class="notes-list-controls-container">
+								<form method="post" action="/notes/new">
+									<button type="submit" class="addNote"><i class="icon icon-plus"></i></button>
+								</form>
+							</div>
+						</div>
+						<div class="note-container">
+							<div class="note-container-top">
+								<div class="note-container-bottom">
+									<div class="note-date">{ data.CurrentDate }</div>
+									if data.CurrentID != "" {
+										<form id="noteForm" method="post" action={ templ.URL("/notes/" + data.CurrentID + "/save") }>
+											<div class="note-text">
+												<div id="noteBody" contenteditable="true" class="textarea">
+													@templ.Raw(data.CurrentBody)
+												</div>
+												<input type="hidden" name="note" id="noteField"/>
+											</div>
+										</form>
+										<div class="note-controls-container">
+											<form method="post" action={ templ.URL("/notes/" + data.CurrentID + "/delete") }>
+												<button type="submit" class="removeNote"><i class="icon icon-trash-empty"></i></button>
+											</form>
+											<form method="post" action="/logout">
+												<button type="submit" class="logout"><i class="icon icon-power"></i></button>
+											</form>
+										</div>
+									}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="/js/notes.js"></script>
+		</body>
+	</html>
+}

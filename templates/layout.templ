@@ -1,0 +1,32 @@
+package templates
+
+import "github.com/rtf6x/notepad/internal/view"
+
+templ head(title string) {
+	<meta charset="utf-8"/>
+	<title>{ title }</title>
+	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+	<link rel="stylesheet" href="/css/app.css"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic"/>
+}
+
+templ authLayout(title string, data view.AuthPage, body templ.Component) {
+	<!doctype html>
+	<html lang="en">
+		<head>
+			@head(title)
+		</head>
+		<body>
+			<div class="login-bg"></div>
+			<div class="login-wrapper">
+				if data.Error != "" {
+					<p class="flash flash-error">{ data.Error }</p>
+				}
+				if data.Flash.Message != "" {
+					<p class={ "flash", "flash-" + data.Flash.Kind }>{ data.Flash.Message }</p>
+				}
+				@body
+			</div>
+		</body>
+	</html>
+}

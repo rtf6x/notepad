@@ -1,8 +1,4 @@
 .idea/
-client/content/styles/app.css
-server/config.js
+/notepad
 node_modules/
-client/bower_components/
-
-all-logs.log
-error.log
+public/css/app.css.map

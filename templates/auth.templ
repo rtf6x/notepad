@@ -1,0 +1,93 @@
+package templates
+
+import "github.com/rtf6x/notepad/internal/view"
+
+templ Login(data view.AuthPage) {
+	@authLayout("Login — Notepad", data, loginBody())
+}
+
+templ loginBody() {
+	<div class="login-header">
+		<p>Hi there. Please authorize to get in</p>
+	</div>
+	<form class="login-form vh-center" method="post" action="/login">
+		<div class="form-group">
+			<input autocomplete="username" name="login" type="text" id="login" placeholder="username" required/>
+		</div>
+		<div class="form-group">
+			<input autocomplete="current-password" name="password" type="password" id="password" placeholder="password" required/>
+		</div>
+		<button class="submitButton" type="submit"><i class="icon icon-arrow-right"></i></button>
+	</form>
+	<div class="login-bottom_buttons">
+		<a class="registerButton" href="/register">
+			<i class="icon icon-unlock"></i>
+			Register
+		</a>
+		<a class="forgotButton" href="/forgot">
+			<i class="icon icon-question"></i>
+			Forgot password
+		</a>
+	</div>
+}
+
+templ Register(data view.AuthPage) {
+	@authLayout("Register — Notepad", data, registerBody())
+}
+
+templ registerBody() {
+	<div class="login-header">
+		<p>Please enter inputs below to get in</p>
+	</div>
+	<form class="login-form vh-center" method="post" action="/register">
+		<div class="form-group">
+			<input autocomplete="username" name="login" type="text" placeholder="username" required/>
+		</div>
+		<div class="form-group">
+			<input autocomplete="email" name="email" type="email" placeholder="email" required/>
+		</div>
+		<div class="form-group">
+			<input autocomplete="new-password" name="password" type="password" placeholder="password" required/>
+		</div>
+		<button class="submitButton" type="submit"><i class="icon icon-arrow-right"></i></button>
+	</form>
+	<div class="login-bottom_buttons">
+		<a class="registerButton" href="/login">
+			<i class="icon icon-head"></i>
+			Back to login
+		</a>
+		<a class="forgotButton" href="/forgot">
+			<i class="icon icon-question"></i>
+			Forgot password
+		</a>
+	</div>
+}
+
+templ Forgot(data view.AuthPage) {
+	@authLayout("Forgot password — Notepad", data, forgotBody())
+}
+
+templ forgotBody() {
+	<div class="login-header">
+		<p>Please enter your login or email and we'll send you your credentials</p>
+	</div>
+	<form class="login-form vh-center" method="post" action="/forgot">
+		<div class="form-group">
+			<input autocomplete="username" name="login" type="text" placeholder="login"/>
+		</div>
+		<div class="form-group">
+			<input autocomplete="email" name="email" type="email" placeholder="email"/>
+		</div>
+		<button class="submitButton" type="submit"><i class="icon icon-arrow-right"></i></button>
+	</form>
+	<div class="login-bottom_buttons">
+		<a class="registerButton" href="/login">
+			<i class="icon icon-head"></i>
+			Login
+		</a>
+		<a class="registerButton" href="/register">
+			<i class="icon icon-unlock"></i>
+			Register
+		</a>
+	</div>
+}
