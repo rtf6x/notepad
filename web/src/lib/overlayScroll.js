@@ -5,9 +5,7 @@ export function overlayScroll(node) {
   const instance = OverlayScrollbars(node, {
     scrollbars: {
       theme: 'os-theme-notepad',
-      autoHide: 'scroll',
-      autoHideDelay: 800,
-      autoHideSuspend: false,
+      autoHide: 'never',
     },
     overflow: {
       x: 'hidden',

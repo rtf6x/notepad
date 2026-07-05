@@ -174,12 +174,13 @@
       height: 400px;
       padding: 0 30px;
       resize: none;
-      width: calc(100% - 60px);
+      width: 100%;
       background-attachment: local;
       overflow-x: hidden;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       box-sizing: border-box;
+      caret-color: #3d2418;
     }
   }
 }
