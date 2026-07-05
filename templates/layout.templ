@@ -2,11 +2,16 @@ package templates
 
 import "github.com/rtf6x/notepad/internal/view"
 
-templ head(title string) {
+templ authHead(title string) {
 	<meta charset="utf-8"/>
 	<title>{ title }</title>
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+	<link rel="preload" href="/images/back.jpg" as="image"/>
 	<link rel="stylesheet" href="/css/app.css"/>
+}
+
+templ notesHead(title string) {
+	@authHead(title)
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic"/>
 }
 
@@ -14,11 +19,11 @@ templ authLayout(title string, data view.AuthPage, body templ.Component) {
 	<!doctype html>
 	<html lang="en">
 		<head>
-			@head(title)
+			@authHead(title)
 		</head>
-		<body>
-			<div class="login-bg"></div>
-			<div class="login-wrapper">
+		<body class="auth-page">
+			<div class="login-bg" aria-hidden="true"></div>
+			<div class="login-wrapper" id="auth-panel">
 				if data.Error != "" {
 					<p class="flash flash-error">{ data.Error }</p>
 				}
@@ -27,6 +32,7 @@ templ authLayout(title string, data view.AuthPage, body templ.Component) {
 				}
 				@body
 			</div>
+			<script src="/js/auth.js" defer></script>
 		</body>
 	</html>
 }

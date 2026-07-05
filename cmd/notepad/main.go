@@ -15,6 +15,7 @@ import (
 
 	"github.com/rtf6x/notepad/internal/config"
 	"github.com/rtf6x/notepad/internal/handler"
+	"github.com/rtf6x/notepad/internal/httpx"
 	"github.com/rtf6x/notepad/internal/middleware"
 	"github.com/rtf6x/notepad/internal/store"
 )
@@ -41,7 +42,7 @@ func main() {
 
 	r.Mount("/", web.Routes())
 
-	fileServer := http.FileServer(http.Dir(cfg.PublicDir))
+	fileServer := httpx.CachedFileServer(cfg.PublicDir)
 	r.NotFound(fileServer.ServeHTTP)
 
 	addr := fmt.Sprintf(":%d", cfg.Port)

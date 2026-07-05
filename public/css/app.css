@@ -1,12 +1,6 @@
-.flash {
-  margin: 0 0 12px;
-  padding: 8px 12px;
-  border-radius: 4px;
-  text-align: center;
+* {
+  outline: none;
 }
-.flash-error { background: #d2322d; color: #fff; }
-.flash-ok { background: #dff0d8; color: #222; }
-
 
 html {
   font: 12px/12px "Open Sans";
@@ -22,7 +16,7 @@ html body, html #main {
   margin: 0;
 }
 html body, html .login-bg {
-  background: url("../images/back.jpg") no-repeat scroll center center #351f12;
+  background: url("../images/back.jpg") no-repeat fixed center center #351f12;
   background-size: cover;
 }
 html .vh-center {
@@ -105,6 +99,10 @@ p {
   width: 100%;
   height: 100%;
   background: rgba(50, 50, 50, 0.5);
+  transition: opacity 0.15s ease;
+}
+.login-wrapper.auth-swapping {
+  opacity: 0.92;
 }
 
 .login-header {
@@ -134,9 +132,17 @@ p {
   border-radius: 5px;
   color: #fff;
   font: 500 11px/20px "Open Sans";
+  transition: background 0.15s ease, box-shadow 0.15s ease;
 }
 .login-form .form-group input::placeholder {
   opacity: 0.9;
+}
+.login-form .form-group input:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.login-form .form-group input:focus {
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
 }
 .login-form .submitButton {
   border: none;
@@ -154,6 +160,14 @@ p {
   height: 28px;
   width: 28px;
   cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.login-form .submitButton:hover {
+  background: rgba(255, 255, 255, 0.72);
+}
+.login-form .submitButton:active {
+  background: rgba(255, 255, 255, 0.55);
+  transform: scale(0.94);
 }
 .login-form .submitButton i {
   margin: -3px 0 0 -2px;
@@ -177,6 +191,17 @@ p {
   line-height: 16px;
   width: 60px;
   vertical-align: top;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+.login-bottom_buttons a:hover {
+  opacity: 0.88;
+}
+.login-bottom_buttons a:hover i {
+  transform: scale(1.08);
+}
+.login-bottom_buttons a:active {
+  opacity: 0.65;
+  transform: scale(0.96);
 }
 .login-bottom_buttons a i {
   font-size: 30px;
@@ -184,6 +209,7 @@ p {
   padding: 0 0 10px;
   display: block;
   text-align: center;
+  transition: transform 0.15s ease;
 }
 
 @font-face {
