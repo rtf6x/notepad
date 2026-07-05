@@ -1,4 +1,5 @@
 .idea/
 /notepad
 node_modules/
+web/node_modules/
 public/css/app.css.map

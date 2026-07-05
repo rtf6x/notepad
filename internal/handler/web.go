@@ -6,8 +6,6 @@ import (
 
 	"github.com/a-h/templ"
 	"github.com/go-chi/chi/v5"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
 
 	"github.com/rtf6x/notepad/internal/auth"
 	"github.com/rtf6x/notepad/internal/middleware"
@@ -35,12 +33,11 @@ func (h *Web) Routes() chi.Router {
 	r.With(middleware.RedirectIfSession).Get("/forgot", h.forgotForm)
 	r.With(middleware.RedirectIfSession).Post("/forgot", h.forgotPost)
 
-	r.With(middleware.RequireSession).Get("/notes", h.notesIndex)
-	r.With(middleware.RequireSession).Get("/notes/{id}", h.notesShow)
-	r.With(middleware.RequireSession).Post("/notes/new", h.notesNew)
-	r.With(middleware.RequireSession).Post("/notes/{id}/save", h.notesSave)
-	r.With(middleware.RequireSession).Post("/notes/{id}/delete", h.notesDelete)
+	r.With(middleware.RequireSession).Get("/notes", h.notesShell)
+	r.With(middleware.RequireSession).Get("/notes/{id}", h.notesShell)
 	r.Post("/logout", h.logoutPost)
+
+	r.Mount("/api", h.APIRoutes())
 
 	return r
 }
@@ -152,120 +149,9 @@ func (h *Web) logoutPost(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/login", http.StatusFound)
 }
 
-func (h *Web) notesIndex(w http.ResponseWriter, r *http.Request) {
-	sess := middleware.SessionFrom(r.Context())
-	notes, err := h.store.ListNotes(r.Context(), sess.UserID)
-	if err != nil {
-		http.Error(w, "internal error", http.StatusBadGateway)
-		return
-	}
-	if len(notes) == 0 {
-		id, err := h.store.CreateNote(r.Context(), sess.UserID)
-		if err != nil {
-			http.Error(w, "internal error", http.StatusBadGateway)
-			return
-		}
-		http.Redirect(w, r, "/notes/"+id.Hex(), http.StatusFound)
-		return
-	}
-	http.Redirect(w, r, "/notes/"+notes[0].ID.Hex(), http.StatusFound)
-}
-
-func (h *Web) notesShow(w http.ResponseWriter, r *http.Request) {
-	sess := middleware.SessionFrom(r.Context())
-	noteID, err := primitive.ObjectIDFromHex(chi.URLParam(r, "id"))
-	if err != nil {
-		http.NotFound(w, r)
-		return
-	}
-
-	current, err := h.store.FindNote(r.Context(), sess.UserID, noteID)
-	if err != nil {
-		if err == mongo.ErrNoDocuments {
-			http.NotFound(w, r)
-			return
-		}
-		http.Error(w, "internal error", http.StatusBadGateway)
-		return
-	}
-
-	list, err := h.store.ListNotes(r.Context(), sess.UserID)
-	if err != nil {
-		http.Error(w, "internal error", http.StatusBadGateway)
-		return
-	}
-
-	items := make([]view.NoteItem, 0, len(list))
-	for _, n := range list {
-		items = append(items, view.NoteItem{
-			ID:       n.ID.Hex(),
-			Title:    n.Title,
-			DateText: view.FormatNoteDate(n.Date),
-			Selected: n.ID == current.ID,
-		})
-	}
-
-	page := view.NotesPage{
-		Notes:        items,
-		CurrentID:    current.ID.Hex(),
-		CurrentTitle: current.Title,
-		CurrentBody:  current.Body,
-		CurrentDate:  view.FormatNoteDate(current.Date),
-	}
+func (h *Web) notesShell(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	templates.Notes(page).Render(r.Context(), w)
-}
-
-func (h *Web) notesNew(w http.ResponseWriter, r *http.Request) {
-	sess := middleware.SessionFrom(r.Context())
-	id, err := h.store.CreateNote(r.Context(), sess.UserID)
-	if err != nil {
-		http.Error(w, "internal error", http.StatusBadGateway)
-		return
-	}
-	http.Redirect(w, r, "/notes/"+id.Hex(), http.StatusFound)
-}
-
-func (h *Web) notesSave(w http.ResponseWriter, r *http.Request) {
-	sess := middleware.SessionFrom(r.Context())
-	noteID, err := primitive.ObjectIDFromHex(chi.URLParam(r, "id"))
-	if err != nil {
-		http.NotFound(w, r)
-		return
-	}
-	if err := r.ParseForm(); err != nil {
-		http.Error(w, "bad request", http.StatusBadRequest)
-		return
-	}
-	title := r.FormValue("title")
-	body := r.FormValue("note")
-	if err := h.store.UpdateNote(r.Context(), sess.UserID, noteID, title, body); err != nil {
-		if err == mongo.ErrNoDocuments {
-			http.NotFound(w, r)
-			return
-		}
-		http.Error(w, "internal error", http.StatusBadGateway)
-		return
-	}
-	http.Redirect(w, r, "/notes/"+noteID.Hex(), http.StatusFound)
-}
-
-func (h *Web) notesDelete(w http.ResponseWriter, r *http.Request) {
-	sess := middleware.SessionFrom(r.Context())
-	noteID, err := primitive.ObjectIDFromHex(chi.URLParam(r, "id"))
-	if err != nil {
-		http.NotFound(w, r)
-		return
-	}
-	if err := h.store.DeleteNote(r.Context(), sess.UserID, noteID); err != nil {
-		if err == mongo.ErrNoDocuments {
-			http.NotFound(w, r)
-			return
-		}
-		http.Error(w, "internal error", http.StatusBadGateway)
-		return
-	}
-	http.Redirect(w, r, "/notes", http.StatusFound)
+	templates.NotesShell().Render(r.Context(), w)
 }
 
 func (h *Web) authError(w http.ResponseWriter, r *http.Request, msg string) {

@@ -15,7 +15,8 @@ func CachedFileServer(dir string) http.Handler {
 			r.URL.Path == "/favicon.png":
 			w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
 		case strings.HasPrefix(r.URL.Path, "/css/"),
-			strings.HasPrefix(r.URL.Path, "/js/"):
+			strings.HasPrefix(r.URL.Path, "/js/"),
+			strings.HasPrefix(r.URL.Path, "/app/"):
 			w.Header().Set("Cache-Control", "public, max-age=86400")
 		}
 		fs.ServeHTTP(w, r)

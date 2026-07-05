@@ -284,6 +284,14 @@ p {
   overflow: hidden;
   box-shadow: 0 10px 25px #000;
 }
+.notes-list-wrapper.notes-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font: 16px/1.4 "Open Sans", sans-serif;
+  background: rgba(50, 50, 50, 0.5);
+}
 
 .notes-header {
   background: url("../images/title.png") repeat-x scroll left top transparent;
@@ -346,7 +354,14 @@ p {
   margin: 0;
   padding: 0 16px;
   display: block;
-  height: 36px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  min-height: 36px;
 }
 .notes-list-container ul li .note-title .title {
   color: #000;
@@ -381,6 +396,12 @@ p {
   padding: 0;
   text-align: center;
   width: 26px;
+}
+.notes-list-controls-container .addNote:hover {
+  background: linear-gradient(to top, #e8e7e7, #f8f7f7);
+}
+.notes-list-controls-container .addNote:active {
+  background: #e4e3e3;
 }
 
 .note-container {

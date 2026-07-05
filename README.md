@@ -2,7 +2,27 @@
 
 Personal notes app — [notepad.rootfox.cc](https://notepad.rootfox.cc).
 
-**Stack:** Go, MongoDB, [templ](https://templ.guide/), vanilla JS (notes editor).
+**Stack:** Go, MongoDB, [templ](https://templ.guide/) (auth), [Svelte](https://svelte.dev/) (notes SPA).
+
+## Run locally
+
+```bash
+go generate ./templates
+(cd web && npm ci && npm run build)
+cat styles/*.scss | npx sass --stdin public/css/app.css --load-path=styles
+go build -o notepad ./cmd/notepad
+./notepad
+```
+
+Svelte dev server with API proxy (optional):
+
+```bash
+# terminal 1: Go API + static
+go build -o notepad ./cmd/notepad && ./notepad
+
+# terminal 2: Vite HMR
+cd web && npm run dev
+```
 
 ## MongoDB setup
 
@@ -41,12 +61,6 @@ Example (local):
 
 ## Run locally
 
-```bash
-go generate ./templates
-go build -o notepad ./cmd/notepad
-./notepad
-```
-
 Open `http://localhost:8901`.
 
 ## CSS
@@ -67,6 +81,8 @@ set -euo pipefail
 export PATH=/usr/local/go/bin:$PATH
 
 go generate ./templates
+(cd web && npm ci && npm run build)
+cat styles/*.scss | npx sass --stdin public/css/app.css --load-path=styles
 go build -ldflags="-s -w" -o notepad ./cmd/notepad
 
 pm2 stop --silent notepad || :
@@ -113,10 +129,11 @@ App listens on **127.0.0.1:8901**; nginx proxies HTTPS to it. No WebSocket locat
 ```
 cmd/notepad/          entrypoint
 internal/store/       MongoDB access
-internal/handler/     HTTP routes + templ render
+internal/handler/     HTTP routes, JSON API, templ auth
 internal/middleware/  session cookie
-templates/            HTML (templ)
-public/               css, js, fonts, images
+templates/            auth HTML (templ)
+web/                  Svelte notes app (Vite)
+public/               css, fonts, images, compiled app/
 styles/               SCSS sources
 ```
 
@@ -135,8 +152,9 @@ styles/               SCSS sources
 | GET/POST | `/register` | Register |
 | GET/POST | `/forgot` | Forgot password (stub) |
 | POST | `/logout` | Sign out |
-| GET | `/notes` | Redirect to first note |
-| GET | `/notes/{id}` | Notes UI |
-| POST | `/notes/new` | Create note |
-| POST | `/notes/{id}/save` | Save title + body |
-| POST | `/notes/{id}/delete` | Delete note |
+| GET | `/notes`, `/notes/{id}` | Notes shell (Svelte) |
+| GET | `/api/notes` | List notes (JSON) |
+| POST | `/api/notes` | Create note |
+| GET | `/api/notes/{id}` | Get note |
+| PUT | `/api/notes/{id}` | Update note |
+| DELETE | `/api/notes/{id}` | Delete note |
