@@ -8,8 +8,40 @@ const emptyBodies = new Set([
   '<p><br/></p>',
 ]);
 
-const osMarkupSelector =
-  '.os-scrollbar, [data-overlayscrollbars], [data-overlayscrollbars-viewport], [data-overlayscrollbars-padding], [data-overlayscrollbars-content]';
+const osRemoveSelector =
+  '.os-scrollbar, [data-overlayscrollbars-padding], [data-overlayscrollbars]';
+
+const osUnwrapSelector =
+  '[data-overlayscrollbars-viewport], [data-overlayscrollbars-content]';
+
+function unwrapLeafElements(root, selector) {
+  let changed = false;
+
+  for (const el of root.querySelectorAll(selector)) {
+    if (el.querySelector(selector)) {
+      continue;
+    }
+
+    const parent = el.parentNode;
+    if (!parent) {
+      continue;
+    }
+
+    while (el.firstChild) {
+      parent.insertBefore(el.firstChild, el);
+    }
+    el.remove();
+    changed = true;
+  }
+
+  return changed;
+}
+
+function unwrapAll(root, selector) {
+  while (unwrapLeafElements(root, selector)) {
+    // Unwrap deepest wrappers first until none remain.
+  }
+}
 
 export function sanitizeNoteHtml(html) {
   if (html == null || html === '') {
@@ -29,12 +61,8 @@ export function sanitizeNoteHtml(html) {
     return html;
   }
 
-  root.querySelectorAll(osMarkupSelector).forEach((el) => el.remove());
-
-  const viewport = root.querySelector('[data-overlayscrollbars-viewport]');
-  if (viewport) {
-    return viewport.innerHTML;
-  }
+  root.querySelectorAll(osRemoveSelector).forEach((el) => el.remove());
+  unwrapAll(root, osUnwrapSelector);
 
   return root.innerHTML;
 }

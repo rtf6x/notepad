@@ -189,10 +189,13 @@ func (s *Store) UpdateNote(ctx context.Context, userID, noteID primitive.ObjectI
 	if err != nil {
 		return err
 	}
-	if normalizeNoteTitle(existing.Title) == normalizeNoteTitle(title) &&
-		normalizeNoteBody(existing.Body) == normalizeNoteBody(body) {
+	if NormalizeNoteTitle(existing.Title) == NormalizeNoteTitle(title) &&
+		NormalizeNoteBody(existing.Body) == NormalizeNoteBody(body) {
 		return nil
 	}
+
+	title = NormalizeNoteTitle(title)
+	body = NormalizeNoteBody(body)
 
 	res, err := s.db.Collection(notesColl).UpdateOne(ctx,
 		bson.M{"_id": noteID, "userId": userID},

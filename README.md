@@ -9,6 +9,14 @@ Generated at build time (not in git): `templates/*_templ.go`, `public/app/*`, `p
 ## Build
 
 ```bash
+./scripts/build.sh -mongo-host 127.0.0.1 -mongo-user notepad -mongo-password "$MONGO_PASSWORD"
+```
+
+Runs DB migrations first, then templ, Svelte, SCSS, and `go build`. Pass the same Mongo flags as for `./notepad`.
+
+Manual steps (without migrations):
+
+```bash
 go generate ./templates
 (cd web && npm ci && npm run build)
 cat styles/*.scss | npx sass --stdin public/css/app.css --load-path=styles
@@ -36,7 +44,7 @@ db.createUser({
 })
 ```
 
-Collections: `users`, `tokens`, `notes`.
+Collections: `users`, `tokens`, `notes`, `migrations`.
 
 ## Config
 
@@ -57,7 +65,8 @@ Flags override env vars.
 
 ```
 cmd/notepad/       entrypoint
-internal/          store, handlers, middleware
+cmd/migrate/       DB migrations (run via scripts/build.sh)
+internal/          store, handlers, middleware, migrate
 templates/         auth pages (templ sources)
 web/               Svelte notes UI
 public/            static assets + built frontend

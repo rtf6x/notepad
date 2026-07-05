@@ -9,6 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 
 	"github.com/rtf6x/notepad/internal/middleware"
+	"github.com/rtf6x/notepad/internal/store"
 )
 
 type noteListJSON struct {
@@ -85,8 +86,8 @@ func (h *Web) apiGetNote(w http.ResponseWriter, r *http.Request) {
 
 	writeJSON(w, http.StatusOK, noteJSON{
 		ID:    note.ID.Hex(),
-		Title: note.Title,
-		Body:  note.Body,
+		Title: store.NormalizeNoteTitle(note.Title),
+		Body:  store.NormalizeNoteBody(note.Body),
 		Date:  note.Date,
 	})
 }
