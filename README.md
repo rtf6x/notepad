@@ -20,32 +20,23 @@ Collections (created on first use): `users`, `tokens`, `notes` — same shape as
 
 ## Environment
 
-| Variable | Default | Description |
-|---|---|---|
-| `PORT` | `8901` | HTTP port |
-| `MONGO_URI` | — | Full URI (overrides host/user below) |
-| `MONGO_HOST` | `127.0.0.1` | Mongo host |
-| `MONGO_PORT` | `27017` | Mongo port |
-| `MONGO_DB` | `notepad` | Database name |
-| `MONGO_USER` | — | Mongo user |
-| `MONGO_PASSWORD` | — | Mongo password |
-| `PUBLIC_DIR` | `public` | Static assets |
+Flags override env vars. Env vars are convenient for local dev; production deploy passes flags after `--` in the `pm2 start` command.
 
-Example:
+| Flag | Env | Default | Description |
+|---|---|---|---|
+| `-port` | `PORT` | `8901` | HTTP port |
+| `-mongo-uri` | `MONGO_URI` | — | Full URI (overrides host/user below) |
+| `-mongo-host` | `MONGO_HOST` | `127.0.0.1` | Mongo host |
+| `-mongo-port` | `MONGO_PORT` | `27017` | Mongo port |
+| `-mongo-db` | `MONGO_DB` | `notepad` | Database name |
+| `-mongo-user` | `MONGO_USER` | — | Mongo user |
+| `-mongo-password` | `MONGO_PASSWORD` | — | Mongo password |
+| `-public-dir` | `PUBLIC_DIR` | `public` | Static assets |
 
-```bash
-export MONGO_HOST=127.0.0.1
-export MONGO_PORT=27017
-export MONGO_DB=notepad
-export MONGO_USER=notepad
-export MONGO_PASSWORD=secret
-export PORT=8901
-```
-
-Or single URI:
+Example (local):
 
 ```bash
-export MONGO_URI="mongodb://notepad:secret@127.0.0.1:27017/notepad"
+./notepad -mongo-host rootfox.cc -mongo-port 28888 -mongo-user notepad -mongo-password "$MONGO_PASSWORD"
 ```
 
 ## Run locally
@@ -83,20 +74,20 @@ pm2 delete --silent notepad || :
 truncate -s 0 ~/.pm2/logs/notepad-out.log
 truncate -s 0 ~/.pm2/logs/notepad-error.log
 
-export PORT=8901
-export MONGO_HOST=127.0.0.1
-export MONGO_PORT=27017
-export MONGO_DB=notepad
-export MONGO_USER=notepad
-# MONGO_PASSWORD — set in Jenkins job / global environment (Secret text), do not commit
-
-pm2 start ./notepad --name notepad --update-env
+# MONGO_PASSWORD — Jenkins Secret text binding (Variable: MONGO_PASSWORD)
+pm2 start ./notepad --name notepad -- \
+  -port 8901 \
+  -mongo-host 127.0.0.1 \
+  -mongo-port 28888 \
+  -mongo-user notepad \
+  -mongo-password "$MONGO_PASSWORD"
 ```
 
-Or single URI instead of host/user/password:
+Or single URI:
 
 ```bash
-export MONGO_URI="mongodb://notepad:${MONGO_PASSWORD}@127.0.0.1:27017/notepad"
+pm2 start ./notepad --name notepad -- \
+  -mongo-uri "mongodb://notepad:${MONGO_PASSWORD}@127.0.0.1:28888/notepad"
 ```
 
 ## nginx

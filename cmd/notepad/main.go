@@ -21,6 +21,7 @@ import (
 
 func main() {
 	cfg := config.Load()
+	log.Printf("mongo: %s", cfg.MongoDescribe())
 
 	ctx := context.Background()
 	st, err := store.Connect(ctx, cfg.MongoURI, cfg.MongoDB)
