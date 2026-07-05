@@ -39,7 +39,7 @@ func Notes(data view.NotesPage) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body><div class=\"main-wrapper vh-center\"><div class=\"notes-list-wrapper\"><div class=\"notes-header\"><input id=\"noteTitle\" form=\"noteForm\" name=\"title\" value=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</head><body class=\"notes-page\"><div class=\"main-wrapper vh-center\"><div class=\"notes-list-wrapper\" id=\"notes-panel\"><div class=\"notes-header\"><input id=\"noteTitle\" form=\"noteForm\" name=\"title\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

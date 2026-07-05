@@ -8,9 +8,9 @@ templ Notes(data view.NotesPage) {
 		<head>
 			@notesHead("Notes — Notepad")
 		</head>
-		<body>
+		<body class="notes-page">
 			<div class="main-wrapper vh-center">
-				<div class="notes-list-wrapper">
+				<div class="notes-list-wrapper" id="notes-panel">
 					<div class="notes-header">
 						<input id="noteTitle" form="noteForm" name="title" value={ data.CurrentTitle }/>
 					</div>

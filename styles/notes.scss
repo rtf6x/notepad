@@ -152,6 +152,10 @@
       resize: none;
       width: calc(100% - 60px);
       background-attachment: local;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      box-sizing: border-box;
     }
   }
 }
@@ -161,19 +165,37 @@
   left: 0;
   position: absolute;
   width: 100%;
-  text-align: center;
-  .removeNote {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+
+  form {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
     padding: 0;
     margin: 0;
     cursor: pointer;
     color: #b65e3f;
     font: bold 22px/22px Arial;
-  }
-  .logout {
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
-    color: #b65e3f;
-    font: bold 22px/22px Arial;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 0.78;
+    }
+
+    &:active {
+      opacity: 0.55;
+    }
   }
 }
