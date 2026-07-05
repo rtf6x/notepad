@@ -185,6 +185,14 @@ func (s *Store) CreateNote(ctx context.Context, userID primitive.ObjectID) (prim
 }
 
 func (s *Store) UpdateNote(ctx context.Context, userID, noteID primitive.ObjectID, title, body string) error {
+	existing, err := s.FindNote(ctx, userID, noteID)
+	if err != nil {
+		return err
+	}
+	if existing.Title == title && existing.Body == body {
+		return nil
+	}
+
 	res, err := s.db.Collection(notesColl).UpdateOne(ctx,
 		bson.M{"_id": noteID, "userId": userID},
 		bson.M{"$set": bson.M{

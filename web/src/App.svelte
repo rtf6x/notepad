@@ -19,6 +19,23 @@
   let loading = $state(true);
 
   let bodyEl = $state(null);
+  let savedTitle = $state('');
+  let savedBody = $state('');
+
+  function currentBodyHtml() {
+    return bodyEl ? bodyEl.innerHTML : body;
+  }
+
+  function isDirty() {
+    return title !== savedTitle || currentBodyHtml() !== savedBody;
+  }
+
+  function markSaved(note) {
+    savedTitle = note.title;
+    savedBody = note.body;
+    title = note.title;
+    body = note.body;
+  }
 
   async function refreshList() {
     notes = await listNotes();
@@ -31,10 +48,8 @@
 
     const note = await getNote(id);
     currentId = note.id;
-    title = note.title;
-    body = note.body;
+    markSaved(note);
     currentDate = formatNoteDate(note.date);
-    await refreshList();
 
     if (push) {
       history.pushState({ noteId: note.id }, '', `/notes/${note.id}`);
@@ -42,14 +57,17 @@
   }
 
   async function saveCurrent() {
-    if (!currentId) {
-      return;
+    if (!currentId || !isDirty()) {
+      return false;
     }
 
-    const html = bodyEl ? bodyEl.innerHTML : body;
+    const html = currentBodyHtml();
     await updateNote(currentId, title, html);
+    savedTitle = title;
+    savedBody = html;
     body = html;
     await refreshList();
+    return true;
   }
 
   async function selectNote(id) {
@@ -63,6 +81,7 @@
   async function addNote() {
     await saveCurrent();
     const created = await createNote();
+    await refreshList();
     await loadNote(created.id, true);
   }
 
