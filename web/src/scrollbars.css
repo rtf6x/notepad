@@ -15,9 +15,3 @@
   --os-handle-bg: rgba(0, 0, 0, 0.2);
   --os-handle-bg-hover: rgba(0, 0, 0, 0.34);
 }
-
-.note-text .os-scrollbar-vertical {
-  --os-handle-bg: rgba(120, 70, 40, 0.28);
-  --os-handle-bg-hover: rgba(120, 70, 40, 0.42);
-  --os-handle-bg-active: rgba(120, 70, 40, 0.52);
-}

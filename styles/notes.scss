@@ -51,6 +51,11 @@
   width: 230px;
   float: left;
   height: 504px;
+  .notes-list-scroll {
+    width: 212px;
+    height: 460px;
+  }
+
   ul {
     padding: 0;
     margin: 0;
@@ -58,9 +63,6 @@
     width: 212px;
     border: 1px solid #bab6b6;
     background: url('../images/notes-list-bg.png') repeat-y scroll left top transparent;
-    height: 460px;
-    overflow-x: hidden;
-    overflow-y: auto;
     li.selected-note {
       background: #e0decd;
     }
@@ -168,23 +170,34 @@
     padding: 50px 0 0;
     margin: 0;
 
-    .textarea-scroll {
-      height: 400px;
-      width: 100%;
-    }
-
     .textarea {
       background: transparent url("../images/editor-line.png") repeat scroll left -5px;
       border: medium none;
       font: 24px/36px "Neucha", cursive;
-      min-height: 400px;
+      height: 400px;
       padding: 0 30px;
       resize: none;
       width: 100%;
       background-attachment: local;
-      overflow: visible;
+      overflow-x: hidden;
+      overflow-y: auto;
       box-sizing: border-box;
       caret-color: #3d2418;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(120, 70, 40, 0.35) transparent;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(120, 70, 40, 0.28);
+        border-radius: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgba(120, 70, 40, 0.42);
+      }
     }
   }
 }

@@ -50,7 +50,7 @@
     const note = await getNote(id);
     currentId = note.id;
     title = note.title;
-    body = note.body;
+    body = normalizeHtml(note.body);
     currentDate = formatNoteDate(note.date);
     await syncSavedFromDom();
 
@@ -183,7 +183,8 @@
       </div>
       <div class="notes-list-box">
         <div class="notes-list-container">
-          <ul use:overlayScroll>
+          <div class="notes-list-scroll" use:overlayScroll>
+            <ul>
             {#each notes as note (note.id)}
               <li class:selected-note={note.id === currentId}>
                 <button
@@ -197,7 +198,8 @@
                 </button>
               </li>
             {/each}
-          </ul>
+            </ul>
+          </div>
           <div class="notes-list-controls-container">
             <button type="button" class="addNote" onclick={addNote} aria-label="Add note">
               <i class="icon icon-plus"></i>
@@ -210,19 +212,17 @@
               <div class="note-date">{currentDate}</div>
               {#if currentId}
                 <div class="note-text">
-                  <div class="textarea-scroll" use:overlayScroll>
-                    {#key currentId}
-                      <div
-                        bind:this={bodyEl}
-                        id="noteBody"
-                        class="textarea"
-                        contenteditable="true"
-                        onblur={onBlurSave}
-                      >
-                        {@html body}
-                      </div>
-                    {/key}
-                  </div>
+                  {#key currentId}
+                    <div
+                      bind:this={bodyEl}
+                      id="noteBody"
+                      class="textarea"
+                      contenteditable="true"
+                      onblur={onBlurSave}
+                    >
+                      {@html body}
+                    </div>
+                  {/key}
                 </div>
                 <div class="note-controls-container">
                   <button type="button" class="removeNote" onclick={removeNote} aria-label="Delete note">
