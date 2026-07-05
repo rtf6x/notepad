@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import { overlayScroll } from './lib/overlayScroll.js';
   import {
     listNotes,
     getNote,
@@ -156,7 +157,7 @@
       </div>
       <div class="notes-list-box">
         <div class="notes-list-container">
-          <ul>
+          <ul use:overlayScroll>
             {#each notes as note (note.id)}
               <li class:selected-note={note.id === currentId}>
                 <button
@@ -188,6 +189,7 @@
                       id="noteBody"
                       class="textarea"
                       contenteditable="true"
+                      use:overlayScroll
                       onblur={saveCurrent}
                     >
                       {@html body}

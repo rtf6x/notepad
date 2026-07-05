@@ -6,12 +6,20 @@ templ authHead(title string) {
 	<meta charset="utf-8"/>
 	<title>{ title }</title>
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-	<link rel="preload" href="/images/back.jpg" as="image"/>
+	<link rel="preload" href="/images/back.jpg" as="image" type="image/jpeg"/>
 	<link rel="stylesheet" href="/css/app.css"/>
 }
 
 templ notesHead(title string) {
-	@authHead(title)
+	<meta charset="utf-8"/>
+	<title>{ title }</title>
+	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+	<link rel="preload" href="/images/title.png" as="image" type="image/png"/>
+	<link rel="preload" href="/images/note-top.png" as="image" type="image/png"/>
+	<link rel="preload" href="/images/note-end.png" as="image" type="image/png"/>
+	<link rel="preload" href="/images/editor-line.png" as="image" type="image/png"/>
+	<link rel="stylesheet" href="/css/app.css"/>
+	<link rel="stylesheet" href="/app/notes.css"/>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic"/>
 }
 

@@ -59,7 +59,7 @@
     border: 1px solid #bab6b6;
     background: url('../images/notes-list-bg.png') repeat-y scroll left top transparent;
     height: 460px;
-    overflow-x: visible;
+    overflow-x: hidden;
     overflow-y: auto;
     li.selected-note {
       background: #e0decd;
