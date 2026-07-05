@@ -16,13 +16,17 @@ go build -o notepad ./cmd/notepad
 ./notepad
 ```
 
+Open `http://localhost:8901`.
+
 Svelte dev server with API proxy (optional):
 
 ```bash
-# terminal 1: Go API + static
-go generate ./templates && go build -o notepad ./cmd/notepad && ./notepad
+# terminal 1
+go generate ./templates
+go build -o notepad ./cmd/notepad
+./notepad
 
-# terminal 2: Vite HMR
+# terminal 2
 cd web && npm run dev
 ```
 
@@ -60,10 +64,6 @@ Example (local):
 ```bash
 ./notepad -mongo-host rootfox.cc -mongo-port 28888 -mongo-user notepad -mongo-password "$MONGO_PASSWORD"
 ```
-
-## Run locally
-
-Open `http://localhost:8901`.
 
 ## CSS
 
