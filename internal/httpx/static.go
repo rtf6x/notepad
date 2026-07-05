@@ -18,7 +18,8 @@ func CachedFileServer(dir string) http.Handler {
 		switch {
 		case strings.HasPrefix(path, "/fonts/"),
 			strings.HasPrefix(path, "/images/"),
-			path == "/favicon.png":
+			path == "/favicon.png",
+			path == "/og.png":
 			w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
 		case strings.HasPrefix(path, "/css/"),
 			strings.HasPrefix(path, "/js/"),

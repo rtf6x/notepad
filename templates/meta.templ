@@ -1,0 +1,27 @@
+package templates
+
+const (
+	siteURL         = "https://notepad.rootfox.cc"
+	siteName        = "Notepad"
+	siteDescription = "Personal notes — simple, private, yours."
+	ogImagePath     = "/og.png"
+	ogImageWidth    = "1320"
+	ogImageHeight   = "870"
+)
+
+templ socialMeta(title string, description string) {
+	<meta name="description" content={ description }/>
+	<meta property="og:site_name" content={ siteName }/>
+	<meta property="og:title" content={ title }/>
+	<meta property="og:description" content={ description }/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content={ siteURL }/>
+	<meta property="og:image" content={ siteURL + ogImagePath }/>
+	<meta property="og:image:width" content={ ogImageWidth }/>
+	<meta property="og:image:height" content={ ogImageHeight }/>
+	<meta property="og:image:alt" content="Notepad notes app"/>
+	<meta name="twitter:card" content="summary_large_image"/>
+	<meta name="twitter:title" content={ title }/>
+	<meta name="twitter:description" content={ description }/>
+	<meta name="twitter:image" content={ siteURL + ogImagePath }/>
+}

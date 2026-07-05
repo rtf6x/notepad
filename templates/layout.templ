@@ -4,7 +4,9 @@ import "github.com/rtf6x/notepad/internal/view"
 
 templ authHead(title string) {
 	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>{ title }</title>
+	@socialMeta(title, siteDescription)
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<link rel="preload" href="/images/back.jpg" as="image" type="image/jpeg"/>
 	<link rel="stylesheet" href="/css/app.css"/>
@@ -12,7 +14,9 @@ templ authHead(title string) {
 
 templ notesHead(title string) {
 	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<title>{ title }</title>
+	@socialMeta(title, siteDescription)
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
 	<link rel="preload" href="/images/title.png" as="image" type="image/png"/>
 	<link rel="preload" href="/images/note-top.png" as="image" type="image/png"/>
