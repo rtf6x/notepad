@@ -138,11 +138,11 @@ p {
   opacity: 0.9;
 }
 .login-form .form-group input:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.36);
 }
 .login-form .form-group input:focus {
-  background: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.28);
 }
 .login-form .submitButton {
   border: none;
@@ -155,19 +155,21 @@ p {
   border-radius: 999px;
   padding: 8px;
   background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
   font-size: 16px;
   line-height: 12px;
   height: 28px;
   width: 28px;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.1s ease;
+  transition: background 0.15s ease, box-shadow 0.15s ease;
 }
 .login-form .submitButton:hover {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
 }
 .login-form .submitButton:active {
-  background: rgba(255, 255, 255, 0.55);
-  transform: scale(0.94);
+  background: rgba(255, 255, 255, 0.44);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 .login-form .submitButton i {
   margin: -3px 0 0 -2px;
@@ -191,17 +193,15 @@ p {
   line-height: 16px;
   width: 60px;
   vertical-align: top;
-  transition: opacity 0.15s ease, transform 0.1s ease;
+  transition: color 0.15s ease, opacity 0.15s ease;
 }
 .login-bottom_buttons a:hover {
-  opacity: 0.88;
-}
-.login-bottom_buttons a:hover i {
-  transform: scale(1.08);
+  color: rgba(255, 255, 255, 0.92);
+  opacity: 0.92;
 }
 .login-bottom_buttons a:active {
-  opacity: 0.65;
-  transform: scale(0.96);
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 0.72;
 }
 .login-bottom_buttons a i {
   font-size: 30px;
@@ -209,7 +209,6 @@ p {
   padding: 0 0 10px;
   display: block;
   text-align: center;
-  transition: transform 0.15s ease;
 }
 
 @font-face {
