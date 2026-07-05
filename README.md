@@ -4,6 +4,8 @@ Personal notes app — [notepad.rootfox.cc](https://notepad.rootfox.cc).
 
 **Stack:** Go, MongoDB, [templ](https://templ.guide/) (auth), [Svelte](https://svelte.dev/) (notes SPA).
 
+Generated at build time (not in git): `templates/*_templ.go`, `public/app/*` (Svelte), `public/css/app.css` (SCSS).
+
 ## Run locally
 
 ```bash
@@ -18,7 +20,7 @@ Svelte dev server with API proxy (optional):
 
 ```bash
 # terminal 1: Go API + static
-go build -o notepad ./cmd/notepad && ./notepad
+go generate ./templates && go build -o notepad ./cmd/notepad && ./notepad
 
 # terminal 2: Vite HMR
 cd web && npm run dev
