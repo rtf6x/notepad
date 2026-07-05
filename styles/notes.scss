@@ -167,18 +167,22 @@
   .note-text {
     padding: 50px 0 0;
     margin: 0;
+
+    .textarea-scroll {
+      height: 400px;
+      width: 100%;
+    }
+
     .textarea {
       background: transparent url("../images/editor-line.png") repeat scroll left -5px;
       border: medium none;
       font: 24px/36px "Neucha", cursive;
-      height: 400px;
+      min-height: 400px;
       padding: 0 30px;
       resize: none;
       width: 100%;
       background-attachment: local;
-      overflow-x: hidden;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
+      overflow: visible;
       box-sizing: border-box;
       caret-color: #3d2418;
     }

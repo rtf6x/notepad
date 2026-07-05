@@ -189,7 +189,8 @@ func (s *Store) UpdateNote(ctx context.Context, userID, noteID primitive.ObjectI
 	if err != nil {
 		return err
 	}
-	if existing.Title == title && existing.Body == body {
+	if normalizeNoteTitle(existing.Title) == normalizeNoteTitle(title) &&
+		normalizeNoteBody(existing.Body) == normalizeNoteBody(body) {
 		return nil
 	}
 
